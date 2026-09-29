@@ -1,4 +1,4 @@
-# elsewhere
+# Fernando's Portfolio
 
 A responsive React and Tailwind CSS landing page with a four-place carousel. The carousel advances automatically, supports mouse and touch dragging, and includes keyboard navigation, direct slide selection, and previous/next controls.
 
