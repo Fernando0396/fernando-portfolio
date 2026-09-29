@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #f9efff;
+  background: #100a24;
+  --night: #100a24;
+  --deep-purple: #1c1035;
+  --purple: #9b5de5;
+  --pink: #ff4fd8;
+  --cyan: #53e0e5;
+  --lavender: #f9efff;
+  --muted-lavender: #b7a9ca;
+  --line: rgb(201 166 255 / 18%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button,
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+::selection {
+  color: var(--night);
+  background: var(--pink);
+}
