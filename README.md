@@ -1,6 +1,6 @@
 # Fernando's Portfolio
 
-A responsive React and Tailwind CSS landing page with a four-place carousel. The carousel advances automatically, supports mouse and touch dragging, and includes keyboard navigation, direct slide selection, and previous/next controls.
+A responsive React and Tailwind CSS portfolio with an animated navigation menu, visual explorations carousel, about section, capabilities, and contact area. The carousel advances automatically, supports mouse and touch dragging, and includes keyboard navigation, direct slide selection, and previous/next controls.
 
 ## Getting started
 
@@ -19,4 +19,4 @@ npm run preview
 npm run lint
 ```
 
-The slide photography is loaded from Unsplash, so an internet connection is needed to display the images.
+The carousel artwork is bundled locally in `src/assets`.

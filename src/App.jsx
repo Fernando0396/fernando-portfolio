@@ -1,50 +1,55 @@
 import { useEffect, useRef, useState } from 'react'
+import avowedImage from './assets/avowed.jpg'
+import bloomAndRageImage from './assets/bloom-and-rage.png'
+import mindsEyeImage from './assets/mindseye.jpg'
+import slimeRancherImage from './assets/slime-rancher-2.jpg'
 import './App.css'
 
 const places = [
   {
-    name: 'The quiet coast',
-    location: 'Amalfi Coast, Italy',
-    category: 'SLOW LIVING',
+    name: 'Localization QA - Lionbridge',
+    location: 'Narrative adventure',
+    category: 'STORY',
     number: '01',
-    image:
-      'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1800&q=85',
-    alt: 'A sunlit coastal village spilling down to a blue Mediterranean bay',
+    image: bloomAndRageImage,
+    alt: 'Lost Records: Bloom & Rage key art featuring four friends in a forest',
     color: '#c26d45',
   },
   {
-    name: 'Into the wild',
-    location: 'Dolomites, Italy',
-    category: 'OPEN AIR',
+    name: 'Avowed',
+    location: 'Fantasy role-playing',
+    category: 'FANTASY',
     number: '02',
-    image:
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85',
-    alt: 'Mountain peaks rising above a quiet alpine landscape',
+    image: avowedImage,
+    alt: 'Avowed key art showing a fantasy warrior and sword',
     color: '#56756f',
   },
   {
-    name: 'A softer blue',
-    location: 'Paros, Greece',
-    category: 'ISLAND TIME',
+    name: 'MindsEye',
+    location: 'Sci-fi action adventure',
+    category: 'SCI-FI',
     number: '03',
-    image:
-      'https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=1800&q=85',
-    alt: 'A small whitewashed island village framed by the sea',
+    image: mindsEyeImage,
+    alt: 'MindsEye key art featuring two characters in a futuristic city',
     color: '#52798e',
   },
   {
-    name: 'Room to breathe',
-    location: 'Joshua Tree, California',
-    category: 'WIDE OPEN',
+    name: 'Slime Rancher 2',
+    location: 'Life simulation adventure',
+    category: 'ADVENTURE',
     number: '04',
-    image:
-      'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=1800&q=85',
-    alt: 'A desert road running toward distant sunlit mountains',
+    image: slimeRancherImage,
+    alt: 'Slime Rancher 2 key art with colorful slimes and its rancher',
     color: '#a76948',
   },
 ]
 
-const navigationItems = ['LINK 01', 'LINK 02', 'LINK 03', 'LINK 04']
+const navigationItems = [
+  { label: 'WORK', href: '#work' },
+  { label: 'ABOUT', href: '#about' },
+  { label: 'CAPABILITIES', href: '#capabilities' },
+  { label: 'CONTACT', href: '#contact' },
+]
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -64,6 +69,30 @@ function App() {
 
     return () => window.clearInterval(timer)
   }, [isDragging, isPaused])
+
+  useEffect(() => {
+    const revealItems = document.querySelectorAll('.scroll-reveal')
+
+    if (!('IntersectionObserver' in window)) {
+      revealItems.forEach((item) => item.classList.add('is-visible'))
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        })
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -32px 0px' },
+    )
+
+    revealItems.forEach((item) => observer.observe(item))
+
+    return () => observer.disconnect()
+  }, [])
 
   const moveTo = (direction) => {
     setActiveIndex((index) => (index + direction + places.length) % places.length)
@@ -128,11 +157,11 @@ function App() {
             {navigationItems.map((item) => (
               <a
                 className="nav-link"
-                href="#discover"
-                key={item}
+                href={item.href}
+                key={item.label}
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </nav>
@@ -150,22 +179,22 @@ function App() {
           </button>
         </header>
 
-        <section id="home" className="intro px-6 text-center sm:px-10">
-          <p className="eyebrow"><span>FIELD NOTES Nº 04</span> &nbsp;—&nbsp; A CHANGE OF SCENERY</p>
+        <section id="home" className="intro scroll-reveal px-6 text-center sm:px-10">
+          <p className="eyebrow"><span>INDEPENDENT CREATIVE PORTFOLIO</span></p>
           <h1>
-            Find your
-            <br className="sm:hidden" /> somewhere.
+            Thoughtful ideas,
+            <br /> made tangible.
           </h1>
           <p className="intro-copy">
-            For the days you need a little less noise
-            <br className="hidden sm:block" /> and a little more <em>here.</em>
+            A little space for the work, the process,
+            <br className="hidden sm:block" /> and the ideas in between.
           </p>
         </section>
 
         <section
-          id="discover"
-          className="carousel-section"
-          aria-label="Featured places"
+          id="work"
+          className="carousel-section portfolio-section"
+          aria-label="Localization QA - Lionbridge"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           onFocus={() => setIsPaused(true)}
@@ -173,6 +202,15 @@ function App() {
             if (!event.currentTarget.contains(event.relatedTarget)) setIsPaused(false)
           }}
         >
+          <div className="section-heading scroll-reveal px-6 sm:px-10">
+            <div>
+              <p className="section-kicker">THE WORK</p>
+              <h2>Localization QA - Lionbridge</h2>
+            </div>
+            <p className="section-description">
+              A selection of some videogames I'm credited for my work as LQA for English to Latin American Spanish translations.
+            </p>
+          </div>
           <div
             ref={carouselRef}
             className={`carousel-viewport ${isDragging ? 'is-dragging' : ''}`}
@@ -184,7 +222,7 @@ function App() {
             onKeyDown={handleKeyDown}
             role="region"
             aria-roledescription="carousel"
-            aria-label="Explore four places"
+            aria-label="Explore four localization QA credits"
             tabIndex={0}
           >
             <div className="carousel-track">
@@ -202,11 +240,10 @@ function App() {
                     <div className="card-shade" />
                     <div className="card-topline">
                       <span className="card-category">{place.category}</span>
-                      <span className="card-count">{place.number} / 04</span>
                     </div>
                     <div className="card-caption">
-                      <p>{place.location}</p>
                       <h2>{place.name}</h2>
+                      <p>{place.location}</p>
                     </div>
                     <span className="card-sparkle" aria-hidden="true">✳</span>
                   </article>
@@ -216,8 +253,8 @@ function App() {
           </div>
 
           <div className="carousel-controls mx-auto flex items-center justify-between px-6 sm:px-10">
-            <p className="drag-hint"><span aria-hidden="true">↔</span> DRAG TO WANDER</p>
-            <div className="slide-progress" role="group" aria-label="Choose a place">
+            <p className="drag-hint"><span aria-hidden="true">↔</span> DRAG TO EXPLORE</p>
+            <div className="slide-progress" role="group" aria-label="Choose a localization QA credit">
               {places.map((place, index) => (
                 <button
                   className={`progress-dot ${index === activeIndex ? 'is-active' : ''}`}
@@ -230,20 +267,64 @@ function App() {
               ))}
             </div>
             <div className="arrow-controls flex items-center gap-2">
-              <button className="arrow-button" type="button" onClick={() => moveTo(-1)} aria-label="Previous place">
+              <button className="arrow-button" type="button" onClick={() => moveTo(-1)} aria-label="Previous game">
                 <span aria-hidden="true">←</span>
               </button>
-              <button className="arrow-button" type="button" onClick={() => moveTo(1)} aria-label="Next place">
+              <button className="arrow-button" type="button" onClick={() => moveTo(1)} aria-label="Next game">
                 <span aria-hidden="true">→</span>
               </button>
             </div>
           </div>
         </section>
 
-        <footer className="page-footer mt-auto flex flex-col items-center justify-between gap-3 px-6 sm:flex-row sm:px-10 lg:px-[7.5%]">
-          <span>TAKE THE LONG WAY HOME.</span>
-          <span className="footer-center">COLLECT MOMENTS, NOT MILES <span aria-hidden="true">✳</span></span>
-          <span>MADE FOR THE IN-BETWEEN</span>
+        <section id="about" className="portfolio-section about-section px-6 sm:px-10">
+          <div className="about-index scroll-reveal">
+            <p className="section-kicker">A LITTLE ABOUT ME</p>
+            <span className="about-sparkle" aria-hidden="true">✳</span>
+          </div>
+          <div className="about-copy scroll-reveal">
+            <h2>Good work starts with curiosity.</h2>
+            <p>
+              I like bringing clear thinking and a thoughtful eye to ideas, turning them
+              into digital experiences that feel considered, useful, and distinctly human.
+            </p>
+          </div>
+        </section>
+
+        <section id="capabilities" className="portfolio-section capabilities-section px-6 sm:px-10">
+          <div className="section-heading scroll-reveal">
+            <div>
+              <p className="section-kicker">HOW I CAN HELP</p>
+              <h2>From first thought to final detail.</h2>
+            </div>
+          </div>
+          <div className="capability-list">
+            <article className="capability-card scroll-reveal">
+              <h3>Creative direction</h3>
+              <p>Finding the idea, mood, and visual language that bring a project into focus.</p>
+            </article>
+            <article className="capability-card scroll-reveal">
+              <h3>Digital design</h3>
+              <p>Shaping clear, welcoming experiences across screens and devices.</p>
+            </article>
+            <article className="capability-card scroll-reveal">
+              <h3>Front-end craft</h3>
+              <p>Building responsive interfaces with care for the details and the people using them.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="contact" className="portfolio-section contact-section scroll-reveal px-6 text-center sm:px-10">
+          <p className="section-kicker">WHAT’S NEXT?</p>
+          <h2>Have an idea in mind?</h2>
+          <p>Let’s make something thoughtful together.</p>
+          <span className="contact-note">CONTACT DETAILS COMING SOON <span aria-hidden="true">✳</span></span>
+        </section>
+
+        <footer className="page-footer mt-auto flex flex-col items-center justify-between gap-3 px-6 sm:flex-row sm:px-10 lg:px-10">
+          <span>PORTFOLIO — 2026</span>
+          <span className="footer-center">MADE WITH INTENTION <span aria-hidden="true">✳</span></span>
+          <a href="#home">BACK TO TOP ↑</a>
         </footer>
       </div>
     </main>

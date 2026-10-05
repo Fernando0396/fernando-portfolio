@@ -4,6 +4,7 @@
 
 .site-shell {
   width: 100%;
+  padding-top: 82px;
   background:
     radial-gradient(ellipse at 50% 19%, rgb(111 44 159 / 20%), transparent 43%),
     radial-gradient(ellipse at 87% 54%, rgb(37 115 157 / 10%), transparent 33%),
@@ -11,10 +12,17 @@
 }
 
 .topbar {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 50%;
   z-index: 5;
+  width: min(100%, 1126px);
   height: 82px;
   flex: 0 0 auto;
+  transform: translateX(-50%);
+  border-bottom: 1px solid var(--line);
+  background: rgb(16 10 36 / 88%);
+  backdrop-filter: blur(18px);
 }
 
 .brand {
@@ -58,7 +66,6 @@
 .nav-link,
 .eyebrow,
 .card-category,
-.card-count,
 .drag-hint,
 .page-footer {
   font-size: 9px;
@@ -134,7 +141,10 @@
   background: rgb(255 255 255 / 3%);
   color: var(--lavender);
   cursor: pointer;
-  transition: border-color 180ms ease, background 180ms ease;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .menu-toggle:hover,
@@ -147,7 +157,18 @@
   width: 14px;
   height: 1px;
   background: linear-gradient(90deg, var(--pink), var(--cyan));
-  transition: transform 180ms ease, opacity 180ms ease;
+  transition:
+    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 160ms ease,
+    width 180ms ease;
+}
+
+.menu-toggle.is-open {
+  transform: rotate(90deg);
+}
+
+.menu-toggle.is-open span {
+  width: 16px;
 }
 
 .menu-toggle.is-open span:first-child {
@@ -204,6 +225,70 @@
 
 .carousel-section {
   width: 100%;
+}
+
+.portfolio-section {
+  scroll-margin-top: 100px;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 650ms ease,
+    transform 650ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.capability-card:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.capability-card:nth-child(3) {
+  transition-delay: 180ms;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 12px;
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding-top: 18px;
+  padding-bottom: 24px;
+}
+
+.section-kicker {
+  margin: 0 0 12px;
+  color: var(--cyan);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+}
+
+.section-heading h2,
+.about-copy h2,
+.contact-section h2 {
+  margin: 0;
+  color: var(--lavender);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 4.2vw, 48px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+}
+
+.section-description {
+  max-width: 620px;
+  margin: 0;
+  color: var(--muted-lavender);
+  font-size: 12px;
+  line-height: 1.7;
 }
 
 .carousel-viewport {
@@ -294,8 +379,7 @@
   justify-content: space-between;
 }
 
-.card-category,
-.card-count {
+.card-category {
   font-size: 8px;
   letter-spacing: 1.5px;
 }
@@ -306,11 +390,6 @@
   border-radius: 99px;
 }
 
-.card-count {
-  padding-top: 9px;
-  color: rgb(255 255 255 / 85%);
-}
-
 .card-caption {
   position: absolute;
   right: clamp(20px, 4vw, 46px);
@@ -319,7 +398,7 @@
 }
 
 .card-caption p {
-  margin: 0 0 7px;
+  margin: 9px 0 0;
   font-size: clamp(10px, 1vw, 12px);
   letter-spacing: 0.5px;
 }
@@ -438,6 +517,137 @@
   font-size: 11px;
 }
 
+.about-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: start;
+  margin-top: clamp(82px, 12vw, 150px);
+  padding-top: 40px;
+  padding-bottom: 76px;
+  border-top: 1px solid var(--line);
+}
+
+.about-index {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.about-sparkle {
+  color: var(--pink);
+  font-size: 23px;
+  text-shadow: 0 0 16px rgb(255 79 216 / 45%);
+}
+
+.about-copy {
+  max-width: 720px;
+}
+
+.about-copy h2 {
+  max-width: 500px;
+  font-size: clamp(34px, 5vw, 58px);
+}
+
+.about-copy p {
+  max-width: 490px;
+  margin: 22px 0 0;
+  color: var(--muted-lavender);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.capabilities-section {
+  padding-top: 46px;
+  padding-bottom: 86px;
+  border-top: 1px solid var(--line);
+}
+
+.capabilities-section .section-heading {
+  width: 100%;
+  margin: 0;
+  padding: 0 0 30px;
+}
+
+.capability-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.capability-card {
+  min-height: 0;
+  padding: 22px 24px;
+  border: 1px solid rgb(201 166 255 / 19%);
+  border-radius: 5px;
+  background: linear-gradient(145deg, rgb(155 93 229 / 9%), rgb(83 224 229 / 3%));
+}
+
+.capability-card > span {
+  color: var(--pink);
+  font-size: 8px;
+  letter-spacing: 1.3px;
+}
+
+.capability-card h3 {
+  margin: 0 0 9px;
+  color: var(--lavender);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+.capability-card p {
+  max-width: 640px;
+}
+
+.capability-card p {
+  margin: 0;
+  color: var(--muted-lavender);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.contact-section {
+  padding-top: 66px;
+  padding-bottom: 72px;
+  border-top: 1px solid var(--line);
+  background: radial-gradient(ellipse at 50% 100%, rgb(155 93 229 / 15%), transparent 65%);
+}
+
+.contact-section h2 {
+  font-size: clamp(40px, 6vw, 68px);
+}
+
+.contact-section > p:not(.section-kicker) {
+  margin: 15px 0 24px;
+  color: var(--muted-lavender);
+  font-size: 13px;
+}
+
+.contact-note {
+  color: var(--pink);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+}
+
+.contact-note span {
+  padding-left: 5px;
+  color: var(--cyan);
+}
+
+.page-footer a {
+  color: #9d90b2;
+  transition: color 180ms ease;
+}
+
+.page-footer a:hover {
+  color: var(--cyan);
+}
+
 @media (min-width: 641px) and (max-width: 820px) {
   .header-nav {
     width: min(46%, 340px);
@@ -447,6 +657,10 @@
 @media (max-width: 640px) {
   .topbar {
     height: 67px;
+  }
+
+  .site-shell {
+    padding-top: 67px;
   }
 
   .brand {
@@ -466,7 +680,7 @@
     top: calc(100% - 2px);
     right: 24px;
     left: 24px;
-    display: none;
+    display: flex;
     width: auto;
     flex-direction: column;
     align-items: stretch;
@@ -478,17 +692,52 @@
     background: rgb(24 14 47 / 97%);
     box-shadow: 0 18px 48px rgb(0 0 0 / 32%), 0 0 24px rgb(155 93 229 / 12%);
     backdrop-filter: blur(16px);
-    transform: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top center;
+    visibility: hidden;
+    transition:
+      opacity 220ms ease,
+      transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      visibility 220ms;
   }
 
   .header-nav.is-open {
-    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+    transition-delay: 0ms;
   }
 
   .nav-link {
     min-height: 48px;
     border-bottom: 1px solid var(--line);
     font-size: 9px;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition:
+      opacity 160ms ease,
+      transform 200ms ease;
+  }
+
+  .header-nav.is-open .nav-link {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 70ms;
+  }
+
+  .header-nav.is-open .nav-link:nth-child(2) {
+    transition-delay: 110ms;
+  }
+
+  .header-nav.is-open .nav-link:nth-child(3) {
+    transition-delay: 150ms;
+  }
+
+  .header-nav.is-open .nav-link:nth-child(4) {
+    transition-delay: 190ms;
   }
 
   .nav-link:last-child {
@@ -515,13 +764,65 @@
     font-size: 12px;
   }
 
+  .section-heading {
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+
+  .section-description {
+    max-width: 380px;
+    font-size: 11px;
+  }
+
+  .about-section {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 76px;
+    padding-top: 30px;
+    padding-bottom: 58px;
+  }
+
+  .about-sparkle {
+    display: none;
+  }
+
+  .about-copy p {
+    margin-top: 16px;
+    font-size: 12px;
+  }
+
+  .capabilities-section {
+    padding-top: 34px;
+    padding-bottom: 62px;
+  }
+
+  .capability-list {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .capability-card {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .capability-card h3 {
+    margin-top: 12px;
+  }
+
+  .contact-section {
+    padding-top: 48px;
+    padding-bottom: 54px;
+  }
+
   .carousel-viewport {
     --card-width: 84vw;
     --card-gap: 12px;
   }
 
   .place-card {
-    height: clamp(310px, 103vw, 430px);
+    height: clamp(190px, 56vw, 360px);
   }
 
   .card-caption h2 {
@@ -563,5 +864,11 @@
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
