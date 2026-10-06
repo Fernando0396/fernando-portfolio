@@ -57,8 +57,10 @@ function App() {
   const [isDragging, setIsDragging] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [showBackToTop, setShowBackToTop] = useState(false)
   const dragStart = useRef(null)
   const carouselRef = useRef(null)
+  const footerRef = useRef(null)
 
   useEffect(() => {
     if (isPaused || isDragging) return undefined
@@ -89,6 +91,28 @@ function App() {
 
     revealItems.forEach((item) => observer.observe(item))
 
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const footer = footerRef.current
+    if (!footer) return undefined
+
+    if (!('IntersectionObserver' in window)) {
+      const updateVisibility = () => {
+        const atPageEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 1
+        setShowBackToTop(atPageEnd)
+      }
+
+      window.addEventListener('scroll', updateVisibility, { passive: true })
+      return () => window.removeEventListener('scroll', updateVisibility)
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setShowBackToTop(entry.isIntersecting)
+    })
+
+    observer.observe(footer)
     return () => observer.disconnect()
   }, [])
 
@@ -320,13 +344,19 @@ function App() {
           <span className="contact-note">CONTACT DETAILS COMING SOON <span aria-hidden="true">✳</span></span>
         </section>
 
-        <footer className="page-footer mt-auto flex flex-col items-center justify-between gap-3 px-6 sm:flex-row sm:px-10 lg:px-10">
+        <footer ref={footerRef} className="page-footer mt-auto flex flex-col items-center justify-between gap-3 px-6 sm:flex-row sm:px-10 lg:px-10">
           <span>PORTFOLIO — 2026</span>
           <span className="footer-center">MADE WITH INTENTION <span aria-hidden="true">✳</span></span>
         </footer>
       </div>
       </main>
-      <a className="back-to-top" href="#home" aria-label="Back to top">
+      <a
+        className={`back-to-top${showBackToTop ? ' is-visible' : ''}`}
+        href="#home"
+        aria-label="Back to top"
+        aria-hidden={!showBackToTop}
+        tabIndex={showBackToTop ? 0 : -1}
+      >
         <span aria-hidden="true">↑</span>
       </a>
     </>
