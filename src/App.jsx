@@ -58,9 +58,11 @@ function App() {
   const [isPaused, setIsPaused] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [isLaunchingToTop, setIsLaunchingToTop] = useState(false)
   const dragStart = useRef(null)
   const carouselRef = useRef(null)
   const footerRef = useRef(null)
+  const backToTopTimer = useRef(null)
 
   useEffect(() => {
     if (isPaused || isDragging) return undefined
@@ -116,6 +118,8 @@ function App() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => () => window.clearTimeout(backToTopTimer.current), [])
+
   const moveTo = (direction) => {
     setActiveIndex((index) => (index + direction + places.length) % places.length)
   }
@@ -164,13 +168,13 @@ function App() {
       <main className="min-h-screen overflow-hidden bg-[#100a24] text-[#f9efff]">
       <div className="site-shell mx-auto flex min-h-screen max-w-[1126px] flex-col">
         <header className="topbar flex items-center justify-between px-5 sm:px-8 lg:px-10">
-          <a className="brand flex items-center gap-2.5" href="#home" aria-label="Portfolio home">
+          <a className="brand flex items-center gap-2.5" href="#home" aria-label="Fernando Esquivel H. home">
             <span className="brand-mark" aria-hidden="true">
               <span />
               <span />
               <span />
             </span>
-            <span>portfolio</span>
+            <span>Fernando Esquivel H.</span>
           </a>
           <nav
             id="main-navigation"
@@ -346,17 +350,25 @@ function App() {
       </div>
       </main>
       <a
-        className={`back-to-top${showBackToTop ? ' is-visible' : ''}`}
+        className={`back-to-top${showBackToTop ? ' is-visible' : ''}${isLaunchingToTop ? ' is-launching' : ''}`}
         href="#home"
         aria-label="Back to top"
         aria-hidden={!showBackToTop}
         tabIndex={showBackToTop ? 0 : -1}
         onClick={(event) => {
           event.preventDefault()
-          window.scrollTo({
-            top: 0,
-            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-          })
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          if (reduceMotion) {
+            window.scrollTo({ top: 0, behavior: 'auto' })
+            return
+          }
+
+          window.clearTimeout(backToTopTimer.current)
+          setIsLaunchingToTop(true)
+          backToTopTimer.current = window.setTimeout(() => {
+            setIsLaunchingToTop(false)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }, 620)
         }}
       >
         <span aria-hidden="true">↑</span>
