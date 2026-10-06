@@ -66,7 +66,6 @@
 .nav-link,
 .eyebrow,
 .card-category,
-.drag-hint,
 .page-footer {
   font-size: 9px;
   font-weight: 600;
@@ -422,19 +421,6 @@
   min-height: 82px;
 }
 
-.drag-hint {
-  margin: 0;
-  color: var(--muted-lavender);
-  font-size: 8px;
-  letter-spacing: 1.3px;
-}
-
-.drag-hint span {
-  padding-right: 5px;
-  color: var(--cyan);
-  font-size: 14px;
-}
-
 .slide-progress {
   display: flex;
   align-items: center;
@@ -459,40 +445,11 @@
 }
 
 .progress-dot:focus-visible,
-.arrow-button:focus-visible,
 .nav-link:focus-visible,
 .menu-toggle:focus-visible,
 .brand:focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 4px;
-}
-
-.arrow-controls {
-  gap: 7px;
-}
-
-.arrow-button {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  place-items: center;
-  border: 1px solid rgb(201 166 255 / 30%);
-  border-radius: 50%;
-  background: transparent;
-  cursor: pointer;
-  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
-}
-
-.arrow-button:hover {
-  border-color: var(--pink);
-  background: var(--pink);
-  color: var(--night);
-  box-shadow: 0 0 18px rgb(255 79 216 / 30%);
-}
-
-.arrow-button span {
-  font-size: 16px;
-  line-height: 1;
 }
 
 .page-footer {
@@ -877,16 +834,6 @@
 
   .carousel-controls {
     min-height: 70px;
-  }
-
-  .drag-hint {
-    font-size: 0;
-    letter-spacing: 0;
-  }
-
-  .drag-hint span {
-    padding: 0;
-    font-size: 18px;
   }
 
   .page-footer {

@@ -312,8 +312,7 @@ function App() {
             </div>
           </div>
 
-          <div className="carousel-controls mx-auto flex items-center justify-between px-6 sm:px-10">
-            <p className="drag-hint"><span aria-hidden="true">↔</span> DRAG TO EXPLORE</p>
+          <div className="carousel-controls mx-auto flex items-center justify-center px-6 sm:px-10">
             <div className="slide-progress" role="group" aria-label="Choose a localization QA credit">
               {places.map((place, index) => (
                 <button
@@ -325,14 +324,6 @@ function App() {
                   aria-current={index === activeIndex ? 'true' : undefined}
                 />
               ))}
-            </div>
-            <div className="arrow-controls flex items-center gap-2">
-              <button className="arrow-button" type="button" onClick={() => moveTo(-1)} aria-label="Previous game">
-                <span aria-hidden="true">←</span>
-              </button>
-              <button className="arrow-button" type="button" onClick={() => moveTo(1)} aria-label="Next game">
-                <span aria-hidden="true">→</span>
-              </button>
             </div>
           </div>
         </section>
