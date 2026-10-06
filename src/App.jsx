@@ -326,7 +326,9 @@ function App() {
         </footer>
       </div>
       </main>
-      <a className="back-to-top" href="#home">BACK TO TOP <span aria-hidden="true">↑</span></a>
+      <a className="back-to-top" href="#home" aria-label="Back to top">
+        <span aria-hidden="true">↑</span>
+      </a>
     </>
   )
 }
