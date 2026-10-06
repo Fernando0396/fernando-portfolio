@@ -136,7 +136,8 @@ function App() {
   }
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#100a24] text-[#f9efff]">
+    <>
+      <main className="min-h-screen overflow-hidden bg-[#100a24] text-[#f9efff]">
       <div className="site-shell mx-auto flex min-h-screen max-w-[1126px] flex-col">
         <header className="topbar flex items-center justify-between px-5 sm:px-8 lg:px-10">
           <a className="brand flex items-center gap-2.5" href="#home" aria-label="Portfolio home">
@@ -322,10 +323,11 @@ function App() {
         <footer className="page-footer mt-auto flex flex-col items-center justify-between gap-3 px-6 sm:flex-row sm:px-10 lg:px-10">
           <span>PORTFOLIO — 2026</span>
           <span className="footer-center">MADE WITH INTENTION <span aria-hidden="true">✳</span></span>
-          <a href="#home">BACK TO TOP ↑</a>
         </footer>
       </div>
-    </main>
+      </main>
+      <a className="back-to-top" href="#home">BACK TO TOP <span aria-hidden="true">↑</span></a>
+    </>
   )
 }
 
