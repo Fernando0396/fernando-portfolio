@@ -228,7 +228,7 @@ function App() {
 
         <section
           id="work"
-          className="carousel-section portfolio-section"
+          className="carousel-section portfolio-section scroll-reveal"
           aria-label="Localization QA - Lionbridge"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
@@ -237,7 +237,7 @@ function App() {
             if (!event.currentTarget.contains(event.relatedTarget)) setIsPaused(false)
           }}
         >
-          <div className="section-heading scroll-reveal px-6 sm:px-10">
+          <div className="section-heading px-6 sm:px-10">
             <div>
               <p className="section-kicker">THE WORK</p>
               <h2>Localization QA - Lionbridge</h2>
