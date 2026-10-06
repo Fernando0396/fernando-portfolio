@@ -45,9 +45,9 @@ const places = [
 ]
 
 const navigationItems = [
-  { label: 'WORK', href: '#work' },
   { label: 'ABOUT', href: '#about' },
   { label: 'CAPABILITIES', href: '#capabilities' },
+  { label: 'WORK', href: '#work' },
   { label: 'CONTACT', href: '#contact' },
 ]
 
@@ -189,6 +189,43 @@ function App() {
           </p>
         </section>
 
+        <section id="about" className="portfolio-section about-section px-6 sm:px-10">
+          <div className="about-index scroll-reveal">
+            <p className="section-kicker">A LITTLE ABOUT ME</p>
+            <span className="about-sparkle" aria-hidden="true">✳</span>
+          </div>
+          <div className="about-copy scroll-reveal">
+            <h2>Good work starts with curiosity.</h2>
+            <p>
+              I like bringing clear thinking and a thoughtful eye to ideas, turning them
+              into digital experiences that feel considered, useful, and distinctly human.
+            </p>
+          </div>
+        </section>
+
+        <section id="capabilities" className="portfolio-section capabilities-section px-6 sm:px-10">
+          <div className="section-heading scroll-reveal">
+            <div>
+              <p className="section-kicker">HOW I CAN HELP</p>
+              <h2>From first thought to final detail.</h2>
+            </div>
+          </div>
+          <div className="capability-list">
+            <article className="capability-card scroll-reveal">
+              <h3>Creative direction</h3>
+              <p>Finding the idea, mood, and visual language that bring a project into focus.</p>
+            </article>
+            <article className="capability-card scroll-reveal">
+              <h3>Digital design</h3>
+              <p>Shaping clear, welcoming experiences across screens and devices.</p>
+            </article>
+            <article className="capability-card scroll-reveal">
+              <h3>Front-end craft</h3>
+              <p>Building responsive interfaces with care for the details and the people using them.</p>
+            </article>
+          </div>
+        </section>
+
         <section
           id="work"
           className="carousel-section portfolio-section"
@@ -272,43 +309,6 @@ function App() {
                 <span aria-hidden="true">→</span>
               </button>
             </div>
-          </div>
-        </section>
-
-        <section id="about" className="portfolio-section about-section px-6 sm:px-10">
-          <div className="about-index scroll-reveal">
-            <p className="section-kicker">A LITTLE ABOUT ME</p>
-            <span className="about-sparkle" aria-hidden="true">✳</span>
-          </div>
-          <div className="about-copy scroll-reveal">
-            <h2>Good work starts with curiosity.</h2>
-            <p>
-              I like bringing clear thinking and a thoughtful eye to ideas, turning them
-              into digital experiences that feel considered, useful, and distinctly human.
-            </p>
-          </div>
-        </section>
-
-        <section id="capabilities" className="portfolio-section capabilities-section px-6 sm:px-10">
-          <div className="section-heading scroll-reveal">
-            <div>
-              <p className="section-kicker">HOW I CAN HELP</p>
-              <h2>From first thought to final detail.</h2>
-            </div>
-          </div>
-          <div className="capability-list">
-            <article className="capability-card scroll-reveal">
-              <h3>Creative direction</h3>
-              <p>Finding the idea, mood, and visual language that bring a project into focus.</p>
-            </article>
-            <article className="capability-card scroll-reveal">
-              <h3>Digital design</h3>
-              <p>Shaping clear, welcoming experiences across screens and devices.</p>
-            </article>
-            <article className="capability-card scroll-reveal">
-              <h3>Front-end craft</h3>
-              <p>Building responsive interfaces with care for the details and the people using them.</p>
-            </article>
           </div>
         </section>
 
