@@ -220,10 +220,14 @@ function App() {
             <span className="about-sparkle" aria-hidden="true">✳</span>
           </div>
           <div className="about-copy scroll-reveal">
-            <h2>Good work starts with curiosity.</h2>
+            <h2>It's in the little details.</h2>
             <p>
-              I like bringing clear thinking and a thoughtful eye to ideas, turning them
-              into digital experiences that feel considered, useful, and distinctly human.
+              I've always been someone who notices the little details: the references in
+              movies and games, the nods and homages to other great artists and media,
+              and the care put into software that makes users feel an emotional attachment.
+              I notice the details that prove a developer cares. Any misspelled word, any
+              process in need of an upgrade, any development that needs a keen eye—that's
+              where I shine.
             </p>
           </div>
         </section>
@@ -347,6 +351,13 @@ function App() {
         aria-label="Back to top"
         aria-hidden={!showBackToTop}
         tabIndex={showBackToTop ? 0 : -1}
+        onClick={(event) => {
+          event.preventDefault()
+          window.scrollTo({
+            top: 0,
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+          })
+        }}
       >
         <span aria-hidden="true">↑</span>
       </a>
