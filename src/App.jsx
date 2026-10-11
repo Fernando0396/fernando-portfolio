@@ -58,7 +58,7 @@ function App() {
   const [isPaused, setIsPaused] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [showBackToTop, setShowBackToTop] = useState(false)
-  const [isLaunchingToTop, setIsLaunchingToTop] = useState(false)
+  const [isReplayingTopAnimation, setIsReplayingTopAnimation] = useState(false)
   const dragStart = useRef(null)
   const carouselRef = useRef(null)
   const footerRef = useRef(null)
@@ -340,7 +340,20 @@ function App() {
           <p className="section-kicker">WHAT’S NEXT?</p>
           <h2>Have an idea in mind?</h2>
           <p>Let’s make something thoughtful together.</p>
-          <span className="contact-note">CONTACT DETAILS COMING SOON <span aria-hidden="true">✳</span></span>
+          <div className="contact-methods" aria-label="Contact information">
+            <article className="contact-method">
+              <h3>Email</h3>
+              <p>Email address coming soon</p>
+            </article>
+            <article className="contact-method">
+              <h3>Phone</h3>
+              <p>Phone number coming soon</p>
+            </article>
+            <article className="contact-method">
+              <h3>LinkedIn</h3>
+              <p>LinkedIn profile coming soon</p>
+            </article>
+          </div>
         </section>
 
         <footer ref={footerRef} className="page-footer mt-auto flex flex-col items-center justify-between gap-3 px-6 sm:flex-row sm:px-10 lg:px-10">
@@ -350,7 +363,7 @@ function App() {
       </div>
       </main>
       <a
-        className={`back-to-top${showBackToTop ? ' is-visible' : ''}${isLaunchingToTop ? ' is-launching' : ''}`}
+        className={`back-to-top${showBackToTop ? ' is-visible' : ''}${isReplayingTopAnimation ? ' is-clicked' : ''}`}
         href="#home"
         aria-label="Back to top"
         aria-hidden={!showBackToTop}
@@ -364,9 +377,9 @@ function App() {
           }
 
           window.clearTimeout(backToTopTimer.current)
-          setIsLaunchingToTop(true)
+          setIsReplayingTopAnimation(true)
           backToTopTimer.current = window.setTimeout(() => {
-            setIsLaunchingToTop(false)
+            setIsReplayingTopAnimation(false)
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }, 620)
         }}

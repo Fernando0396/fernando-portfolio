@@ -576,21 +576,41 @@
 }
 
 .contact-section > p:not(.section-kicker) {
-  margin: 15px 0 24px;
+  margin: 15px 0 32px;
   color: var(--muted-lavender);
   font-size: 13px;
 }
 
-.contact-note {
-  color: var(--pink);
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: 1.3px;
+.contact-methods {
+  display: grid;
+  width: min(100%, 820px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 auto;
 }
 
-.contact-note span {
-  padding-left: 5px;
+.contact-method {
+  padding: 20px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 2%);
+  text-align: left;
+}
+
+.contact-method h3 {
+  margin: 0 0 9px;
   color: var(--cyan);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.contact-method p {
+  margin: 0;
+  color: var(--muted-lavender);
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 .back-to-top {
@@ -703,17 +723,17 @@
   transform: translateY(-2px);
 }
 
-.back-to-top.is-launching span {
-  animation: back-to-top-launch 620ms cubic-bezier(0.2, 0.85, 0.25, 1) both;
+.back-to-top.is-clicked {
+  animation: back-to-top-pop 620ms cubic-bezier(0.2, 0.9, 0.25, 1.25) both;
 }
 
-.back-to-top.is-launching::before,
-.back-to-top.is-launching::after {
-  animation: back-to-top-fireworks 700ms ease-out both;
+.back-to-top.is-clicked::before,
+.back-to-top.is-clicked::after {
+  animation: back-to-top-fireworks 850ms ease-out both;
 }
 
-.back-to-top.is-launching::after {
-  animation-delay: 90ms;
+.back-to-top.is-clicked::after {
+  animation-delay: 100ms;
 }
 
 .back-to-top:focus-visible {
@@ -739,13 +759,6 @@
     opacity: 0;
     transform: translate(-50%, -50%) scale(1.12) rotate(35deg);
   }
-}
-
-@keyframes back-to-top-launch {
-  0% { transform: translateY(0) rotate(0); }
-  28% { transform: translateY(5px) rotate(-18deg); }
-  62% { transform: translateY(-32px) rotate(28deg) scale(1.3); }
-  100% { transform: translateY(0) rotate(0); }
 }
 
 @media (min-width: 641px) and (max-width: 960px) {
@@ -949,6 +962,11 @@
     font-size: 6px;
     letter-spacing: 0.8px;
   }
+
+  .contact-methods {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -976,12 +994,12 @@
     animation: none;
   }
 
-  .back-to-top.is-launching span {
+  .back-to-top.is-clicked {
     animation: none;
   }
 
-  .back-to-top.is-launching::before,
-  .back-to-top.is-launching::after {
+  .back-to-top.is-clicked::before,
+  .back-to-top.is-clicked::after {
     animation: none;
   }
 }
