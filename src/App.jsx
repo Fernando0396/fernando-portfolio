@@ -188,21 +188,21 @@ function App() {
       <main className="min-h-screen overflow-hidden bg-[#100a24] text-[#f9efff]">
       <div className="site-shell mx-auto flex min-h-screen max-w-[1126px] flex-col">
         <header className="topbar flex items-center justify-between px-5 sm:px-8 lg:px-10">
-          <a
-            className={`brand flex items-center gap-2.5${isBrandClicked ? ' is-clicked' : ''}`}
-            href="#home"
-            aria-label="Fernando Esquivel H. home"
-            onClick={handleBrandClick}
-          >
-            <span className="brand-icon" aria-hidden="true">
-              <svg className="brand-mark" viewBox="0 0 16 12" shapeRendering="crispEdges">
+          <div className="brand flex items-center gap-2.5">
+            <a
+              className={`brand-icon${isBrandClicked ? ' is-clicked' : ''}`}
+              href="#home"
+              aria-label="Back to top"
+              onClick={handleBrandClick}
+            >
+              <svg className="brand-mark" viewBox="0 0 16 12" aria-hidden="true" shapeRendering="crispEdges">
                 <path d="M2 0h2v1h1v1h6V1h1V0h2v1h1v2h1v5h-2v2h-2V9H4v1H2V8H0V3h1V1h1z" />
-                <path className="brand-mark-eye" d="M3 4h2v2H3zm6 0h2v2H9z" />
-                <path className="brand-mark-smile" d="M4 8h2v1h4V8h2v1h-2v1H6V9H4z" />
+                <path className="brand-mark-eye brand-mark-eye-left" d="M3 4h2v2H3z" />
+                <path className="brand-mark-eye brand-mark-eye-right" d="M9 4h2v2H9z" />
               </svg>
-            </span>
+            </a>
             <span>Fernando Esquivel H.</span>
-          </a>
+          </div>
           <nav
             id="main-navigation"
             className={`header-nav ${isMenuOpen ? 'is-open' : ''}`}

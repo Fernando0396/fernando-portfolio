@@ -39,6 +39,8 @@
   height: 30px;
   flex: 0 0 30px;
   place-items: center;
+  border-radius: 4px;
+  text-decoration: none;
 }
 
 .brand-mark {
@@ -52,23 +54,27 @@
 
 .brand-mark-eye {
   fill: #17102e;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
-.brand-mark-smile {
-  fill: #17102e;
-  opacity: 0;
-  transition: opacity 120ms ease;
-}
-
-.brand:hover .brand-mark-smile,
-.brand:focus-visible .brand-mark-smile {
-  opacity: 1;
-}
-
-.brand:hover .brand-mark,
-.brand:focus-visible .brand-mark {
-  animation: invader-happy 420ms steps(2, end);
+.brand-icon:hover .brand-mark {
   filter: drop-shadow(0 0 4px rgb(83 224 229 / 70%)) drop-shadow(1px 1px 0 var(--pink));
+}
+
+.brand-icon:hover .brand-mark-eye,
+.brand-icon:focus-visible .brand-mark-eye {
+  animation: invader-eye-look-blink 760ms steps(1, end) both;
+}
+
+.brand-icon:hover .brand-mark-eye-right,
+.brand-icon:focus-visible .brand-mark-eye-right {
+  animation-delay: 30ms;
+}
+
+.brand-icon:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
 }
 
 .brand-icon::before,
@@ -109,22 +115,24 @@
     -16px 14px 0 var(--pink);
 }
 
-.brand.is-clicked .brand-icon {
+.brand-icon.is-clicked {
   animation: invader-jump 620ms steps(5, end);
 }
 
-.brand.is-clicked .brand-icon::before,
-.brand.is-clicked .brand-icon::after {
+.brand-icon.is-clicked::before,
+.brand-icon.is-clicked::after {
   animation: invader-pixel-sparks 650ms steps(5, end) both;
 }
 
-.brand.is-clicked .brand-icon::after {
+.brand-icon.is-clicked::after {
   animation-delay: 70ms;
 }
 
-@keyframes invader-happy {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
+@keyframes invader-eye-look-blink {
+  0%, 100% { transform: translate(0, 0) scaleY(1); }
+  20% { transform: translate(1px, -1px) scaleY(1); }
+  42%, 52% { transform: translate(1px, -1px) scaleY(0.12); }
+  72% { transform: translate(-0.5px, 0) scaleY(1); }
 }
 
 @keyframes invader-jump {
@@ -1122,14 +1130,14 @@
     animation: none;
   }
 
-  .brand:hover .brand-mark,
-  .brand:focus-visible .brand-mark,
-  .brand.is-clicked .brand-icon {
+  .brand-icon:hover .brand-mark-eye,
+  .brand-icon:focus-visible .brand-mark-eye,
+  .brand-icon.is-clicked {
     animation: none;
   }
 
-  .brand.is-clicked .brand-icon::before,
-  .brand.is-clicked .brand-icon::after {
+  .brand-icon.is-clicked::before,
+  .brand-icon.is-clicked::after {
     animation: none;
   }
 }
