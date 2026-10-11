@@ -169,11 +169,10 @@ function App() {
       <div className="site-shell mx-auto flex min-h-screen max-w-[1126px] flex-col">
         <header className="topbar flex items-center justify-between px-5 sm:px-8 lg:px-10">
           <a className="brand flex items-center gap-2.5" href="#home" aria-label="Fernando Esquivel H. home">
-            <span className="brand-mark" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </span>
+            <svg className="brand-mark" viewBox="0 0 16 12" aria-hidden="true" shapeRendering="crispEdges">
+              <path d="M2 0h2v1h1v1h6V1h1V0h2v1h1v2h1v5h-2v2h-2V9H4v1H2V8H0V3h1V1h1z" />
+              <path className="brand-mark-eye" d="M3 4h2v2H3zm6 0h2v2H9z" />
+            </svg>
             <span>Fernando Esquivel H.</span>
           </a>
           <nav
@@ -209,8 +208,9 @@ function App() {
         <section id="home" className="intro scroll-reveal px-6 text-center sm:px-10">
           <p className="eyebrow"><span>INDEPENDENT CREATIVE PORTFOLIO</span></p>
           <h1>
-            Thoughtful ideas,
-            <br /> made tangible.
+            <span>Fernando Esquivel Hidalgo,</span>
+            <span>Manual QA, Localization,</span>
+            <span>Transcriptions and more...</span>
           </h1>
           <p className="intro-copy">
             A little space for the work, the process,
@@ -338,8 +338,8 @@ function App() {
 
         <section id="contact" className="portfolio-section contact-section scroll-reveal px-6 text-center sm:px-10">
           <p className="section-kicker">WHAT’S NEXT?</p>
-          <h2>Have an idea in mind?</h2>
-          <p>Let’s make something thoughtful together.</p>
+          <h2>Contact info</h2>
+          <p>Get in contact with me:</p>
           <div className="contact-methods" aria-label="Contact information">
             <article className="contact-method">
               <svg className="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -348,7 +348,7 @@ function App() {
               </svg>
               <div>
                 <h3>Email</h3>
-                <p>Email address coming soon</p>
+                <a href="mailto:fernando30_96@hotmail.com">fernando30_96@hotmail.com</a>
               </div>
             </article>
             <article className="contact-method">
@@ -357,7 +357,7 @@ function App() {
               </svg>
               <div>
                 <h3>Phone</h3>
-                <p>Phone number coming soon</p>
+                <a href="tel:+50687196676">+506 8719-6676</a>
               </div>
             </article>
             <article className="contact-method">
