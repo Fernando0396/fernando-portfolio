@@ -585,31 +585,45 @@
   display: grid;
   width: min(100%, 820px);
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  gap: 24px;
   margin: 0 auto;
 }
 
 .contact-method {
-  padding: 20px 16px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgb(255 255 255 / 2%);
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
   text-align: left;
 }
 
-.contact-method h3 {
-  margin: 0 0 9px;
+.contact-icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  padding: 8px;
+  border: 1px solid rgb(201 173 255 / 18%);
+  border-radius: 50%;
   color: var(--cyan);
-  font-size: 9px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.contact-method h3 {
+  margin: 0 0 4px;
+  color: var(--lavender);
+  font-size: 8px;
   font-weight: 600;
-  letter-spacing: 1.2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .contact-method p {
   margin: 0;
   color: var(--muted-lavender);
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.6;
 }
 

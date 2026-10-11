@@ -342,16 +342,32 @@ function App() {
           <p>Let’s make something thoughtful together.</p>
           <div className="contact-methods" aria-label="Contact information">
             <article className="contact-method">
-              <h3>Email</h3>
-              <p>Email address coming soon</p>
+              <svg className="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="m4 7 8 6 8-6" />
+              </svg>
+              <div>
+                <h3>Email</h3>
+                <p>Email address coming soon</p>
+              </div>
             </article>
             <article className="contact-method">
-              <h3>Phone</h3>
-              <p>Phone number coming soon</p>
+              <svg className="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 3h3l2 5-2.2 1.6a15 15 0 0 0 4.6 4.6L16 12l5 2v3c0 1.1-.9 2-2 2C10.7 19 5 13.3 5 6c0-1.7.9-3 2-3Z" />
+              </svg>
+              <div>
+                <h3>Phone</h3>
+                <p>Phone number coming soon</p>
+              </div>
             </article>
             <article className="contact-method">
-              <h3>LinkedIn</h3>
-              <p>LinkedIn profile coming soon</p>
+              <svg className="contact-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M5.2 3.5a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4ZM3.3 9.4h3.8v11.1H3.3V9.4Zm6.1 0H13v1.5h.1c.5-.9 1.7-1.9 3.6-1.9 3.9 0 4.6 2.5 4.6 5.7v5.8h-3.8v-5.1c0-1.2 0-2.8-1.8-2.8s-2.1 1.3-2.1 2.7v5.2H9.4V9.4Z" />
+              </svg>
+              <div>
+                <h3>LinkedIn</h3>
+                <p>LinkedIn profile coming soon</p>
+              </div>
             </article>
           </div>
         </section>
