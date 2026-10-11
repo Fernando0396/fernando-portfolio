@@ -7,9 +7,9 @@ import './App.css'
 
 const places = [
   {
-    name: 'Localization QA - Lionbridge',
+    name: 'Lost Records: Bloom & Rage',
     location: 'Narrative adventure',
-    category: 'STORY',
+    category: "DON'T NOD MONTREAL",
     number: '01',
     image: bloomAndRageImage,
     alt: 'Lost Records: Bloom & Rage key art featuring four friends in a forest',
@@ -18,7 +18,7 @@ const places = [
   {
     name: 'Avowed',
     location: 'Fantasy role-playing',
-    category: 'FANTASY',
+    category: 'Obsidian Entertainment',
     number: '02',
     image: avowedImage,
     alt: 'Avowed key art showing a fantasy warrior and sword',
@@ -27,7 +27,7 @@ const places = [
   {
     name: 'MindsEye',
     location: 'Sci-fi action adventure',
-    category: 'SCI-FI',
+    category: 'Build a Rocket Boy',
     number: '03',
     image: mindsEyeImage,
     alt: 'MindsEye key art featuring two characters in a futuristic city',
@@ -36,7 +36,7 @@ const places = [
   {
     name: 'Slime Rancher 2',
     location: 'Life simulation adventure',
-    category: 'ADVENTURE',
+    category: 'Monomi Park',
     number: '04',
     image: slimeRancherImage,
     alt: 'Slime Rancher 2 key art with colorful slimes and its rancher',
@@ -57,13 +57,9 @@ function App() {
   const [isDragging, setIsDragging] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [showBackToTop, setShowBackToTop] = useState(false)
-  const [isReplayingTopAnimation, setIsReplayingTopAnimation] = useState(false)
   const [isBrandClicked, setIsBrandClicked] = useState(false)
   const dragStart = useRef(null)
   const carouselRef = useRef(null)
-  const footerRef = useRef(null)
-  const backToTopTimer = useRef(null)
   const brandAnimationTimer = useRef(null)
 
   useEffect(() => {
@@ -98,31 +94,8 @@ function App() {
     return () => observer.disconnect()
   }, [])
 
-  useEffect(() => {
-    const footer = footerRef.current
-    if (!footer) return undefined
-
-    if (!('IntersectionObserver' in window)) {
-      const updateVisibility = () => {
-        const atPageEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 1
-        setShowBackToTop(atPageEnd)
-      }
-
-      window.addEventListener('scroll', updateVisibility, { passive: true })
-      return () => window.removeEventListener('scroll', updateVisibility)
-    }
-
-    const observer = new IntersectionObserver(([entry]) => {
-      setShowBackToTop(entry.isIntersecting)
-    })
-
-    observer.observe(footer)
-    return () => observer.disconnect()
-  }, [])
-
   useEffect(
     () => () => {
-      window.clearTimeout(backToTopTimer.current)
       window.clearTimeout(brandAnimationTimer.current)
     },
     [],
@@ -365,9 +338,8 @@ function App() {
         </section>
 
         <section id="contact" className="portfolio-section contact-section scroll-reveal px-6 text-center sm:px-10">
-          <p className="section-kicker">WHAT’S NEXT?</p>
-          <h2>Contact info</h2>
-          <p>Get in contact with me:</p>
+          <p className="section-kicker">CONTACT</p>
+          <h2>Get in contact with me:</h2>
           <div className="contact-methods" aria-label="Contact information">
             <article className="contact-method">
               <svg className="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -400,36 +372,12 @@ function App() {
           </div>
         </section>
 
-        <footer ref={footerRef} className="page-footer mt-auto flex flex-col items-center justify-between gap-3 px-6 sm:flex-row sm:px-10 lg:px-10">
+        <footer className="page-footer mt-auto flex flex-col items-center justify-between gap-3 px-6 sm:flex-row sm:px-10 lg:px-10">
           <span>PORTFOLIO — 2026</span>
           <span className="footer-center">MADE WITH INTENTION <span aria-hidden="true">✳</span></span>
         </footer>
       </div>
       </main>
-      <a
-        className={`back-to-top${showBackToTop ? ' is-visible' : ''}${isReplayingTopAnimation ? ' is-clicked' : ''}`}
-        href="#home"
-        aria-label="Back to top"
-        aria-hidden={!showBackToTop}
-        tabIndex={showBackToTop ? 0 : -1}
-        onClick={(event) => {
-          event.preventDefault()
-          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-          if (reduceMotion) {
-            window.scrollTo({ top: 0, behavior: 'auto' })
-            return
-          }
-
-          window.clearTimeout(backToTopTimer.current)
-          setIsReplayingTopAnimation(true)
-          backToTopTimer.current = window.setTimeout(() => {
-            setIsReplayingTopAnimation(false)
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-          }, 620)
-        }}
-      >
-        <span aria-hidden="true">↑</span>
-      </a>
     </>
   )
 }
