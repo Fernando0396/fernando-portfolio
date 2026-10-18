@@ -210,8 +210,6 @@ function App() {
           <p className="eyebrow"><span>INDEPENDENT CREATIVE PORTFOLIO</span></p>
           <h1>
             <span>Localization and manual testing</span>
-            <span>Manual QA, Localization,</span>
-            <span>Transcriptions and more...</span>
           </h1>
           <p className="intro-copy">
             A little space for the work, the process,
@@ -240,22 +238,22 @@ function App() {
         <section id="capabilities" className="portfolio-section capabilities-section px-6 sm:px-10">
           <div className="section-heading scroll-reveal">
             <div>
-              <p className="section-kicker">HOW I CAN HELP</p>
-              <h2>From first thought to final detail.</h2>
+              <p className="section-kicker">MY EXPERIENCE</p>
+              <h2>My professional path</h2>
             </div>
           </div>
           <div className="capability-list">
             <article className="capability-card scroll-reveal">
-              <h3>Creative direction</h3>
-              <p>Finding the idea, mood, and visual language that bring a project into focus.</p>
+              <h3>Amazon Alexa AI services</h3>
+              <p>Testing Alexa AI services to ensure localized experiences work as intended.</p>
             </article>
             <article className="capability-card scroll-reveal">
-              <h3>Digital design</h3>
-              <p>Shaping clear, welcoming experiences across screens and devices.</p>
+              <h3>Xbox testing for Certification</h3>
+              <p>Testing Xbox titles against certification requirements.</p>
             </article>
             <article className="capability-card scroll-reveal">
-              <h3>Front-end craft</h3>
-              <p>Building responsive interfaces with care for the details and the people using them.</p>
+              <h3>Localization software testing</h3>
+              <p>Checking localized software for language quality, functionality, and consistency.</p>
             </article>
           </div>
         </section>
