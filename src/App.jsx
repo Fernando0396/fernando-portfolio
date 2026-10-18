@@ -209,7 +209,7 @@ function App() {
         <section id="home" className="intro scroll-reveal px-6 text-center sm:px-10">
           <p className="eyebrow"><span>INDEPENDENT CREATIVE PORTFOLIO</span></p>
           <h1>
-            <span>Fernando Esquivel Hidalgo,</span>
+            <span>Localization and manual testing</span>
             <span>Manual QA, Localization,</span>
             <span>Transcriptions and more...</span>
           </h1>
