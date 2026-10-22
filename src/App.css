@@ -275,6 +275,8 @@
 
 .carousel-section {
   width: 100%;
+  padding-top: 46px;
+  border-top: 1px solid var(--line);
 }
 
 .carousel-section .section-heading {
@@ -810,6 +812,10 @@
   .capabilities-section {
     padding-top: 34px;
     padding-bottom: 62px;
+  }
+
+  .carousel-section {
+    padding-top: 34px;
   }
 
   .capability-list {

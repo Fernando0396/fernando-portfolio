@@ -238,7 +238,7 @@ function App() {
           <div className="capability-list">
             <article className="capability-card scroll-reveal">
               <h3>Amazon Alexa AI services</h3>
-              <p>Testing Alexa AI services to ensure localized experiences work as intended.</p>
+              <p>Transcriptions behavioral services for Alexa's LLM</p>
             </article>
             <article className="capability-card scroll-reveal">
               <h3>Xbox testing for Certification</h3>
