@@ -277,6 +277,11 @@
   width: 100%;
 }
 
+.carousel-section .section-heading {
+  width: 100%;
+  margin: 0;
+}
+
 .portfolio-section {
   scroll-margin-top: 100px;
 }
@@ -603,6 +608,7 @@
   padding-bottom: 72px;
   border-top: 1px solid var(--line);
   background: radial-gradient(ellipse at 50% 100%, rgb(155 93 229 / 15%), transparent 65%);
+  text-align: left;
 }
 
 .contact-section h2 {
@@ -614,7 +620,7 @@
   width: min(100%, 820px);
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
-  margin: 32px auto 0;
+  margin: 32px 0 0;
 }
 
 .contact-method {
