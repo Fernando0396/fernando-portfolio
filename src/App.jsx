@@ -45,9 +45,9 @@ const places = [
 ]
 
 const navigationItems = [
-  { label: 'ABOUT', href: '#about' },
-  { label: 'CAPABILITIES', href: '#capabilities' },
-  { label: 'WORK', href: '#work' },
+  { label: 'A LITTLE ABOUT ME', href: '#about' },
+  { label: 'MY EXPERIENCE', href: '#capabilities' },
+  { label: 'THE WORK', href: '#work' },
   { label: 'CONTACT', href: '#contact' },
 ]
 
@@ -164,7 +164,7 @@ function App() {
           <div className="brand flex items-center gap-2.5">
             <a
               className={`brand-icon${isBrandClicked ? ' is-clicked' : ''}`}
-              href="#home"
+              href="#about"
               aria-label="Back to top"
               onClick={handleBrandClick}
             >
@@ -206,21 +206,9 @@ function App() {
           </button>
         </header>
 
-        <section id="home" className="intro scroll-reveal px-6 text-center sm:px-10">
-          <p className="eyebrow"><span>INDEPENDENT CREATIVE PORTFOLIO</span></p>
-          <h1>
-            <span>Localization and manual testing</span>
-          </h1>
-          <p className="intro-copy">
-            A little space for the work, the process,
-            <br className="hidden sm:block" /> and the ideas in between.
-          </p>
-        </section>
-
         <section id="about" className="portfolio-section about-section px-6 sm:px-10">
           <div className="about-index scroll-reveal">
             <p className="section-kicker">A LITTLE ABOUT ME</p>
-            <span className="about-sparkle" aria-hidden="true">✳</span>
           </div>
           <div className="about-copy scroll-reveal">
             <h2>It's in the little details.</h2>
@@ -233,6 +221,11 @@ function App() {
               where I shine.
             </p>
           </div>
+          <div
+            className="about-image-placeholder scroll-reveal"
+            role="img"
+            aria-label="Image placeholder"
+          />
         </section>
 
         <section id="capabilities" className="portfolio-section capabilities-section px-6 sm:px-10">
@@ -312,7 +305,6 @@ function App() {
                       <h2>{place.name}</h2>
                       <p>{place.location}</p>
                     </div>
-                    <span className="card-sparkle" aria-hidden="true">✳</span>
                   </article>
                 )
               })}
@@ -372,7 +364,6 @@ function App() {
 
         <footer className="page-footer mt-auto flex flex-col items-center justify-between gap-3 px-6 sm:flex-row sm:px-10 lg:px-10">
           <span>PORTFOLIO — 2026</span>
-          <span className="footer-center">MADE WITH INTENTION <span aria-hidden="true">✳</span></span>
         </footer>
       </div>
       </main>
