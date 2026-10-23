@@ -17,7 +17,7 @@ const places = [
   },
   {
     name: 'Avowed',
-    location: 'Fantasy role-playing',
+    location: 'Fantasy role playing',
     category: 'Obsidian Entertainment',
     number: '02',
     image: avowedImage,
@@ -26,7 +26,7 @@ const places = [
   },
   {
     name: 'MindsEye',
-    location: 'Sci-fi action adventure',
+    location: 'Science fiction action adventure',
     category: 'Build a Rocket Boy',
     number: '03',
     image: mindsEyeImage,
@@ -45,9 +45,9 @@ const places = [
 ]
 
 const navigationItems = [
-  { label: 'A LITTLE ABOUT ME', href: '#about' },
-  { label: 'MY EXPERIENCE', href: '#capabilities' },
+  { label: 'MY PROFESSIONAL EXPERIENCE', href: '#capabilities' },
   { label: 'THE WORK', href: '#work' },
+  { label: 'ABOUT', href: '#about' },
   { label: 'CONTACT', href: '#contact' },
 ]
 
@@ -164,7 +164,7 @@ function App() {
           <div className="brand flex items-center gap-2.5">
             <a
               className={`brand-icon${isBrandClicked ? ' is-clicked' : ''}`}
-              href="#about"
+              href="#capabilities"
               aria-label="Back to top"
               onClick={handleBrandClick}
             >
@@ -182,14 +182,35 @@ function App() {
             aria-label="Main navigation"
           >
             {navigationItems.map((item) => (
-              <a
-                className="nav-link"
-                href={item.href}
+              <div
+                className={`nav-item${item.label === 'CONTACT' ? ' nav-item-contact' : ''}`}
                 key={item.label}
-                onClick={() => setIsMenuOpen(false)}
               >
-                {item.label}
-              </a>
+                <a
+                  className="nav-link"
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+                {item.label === 'CONTACT' && (
+                  <div className="contact-submenu" aria-label="Contact options">
+                    <a className="contact-submenu-link" href="tel:+50687196676">
+                      +506 8719-6676
+                    </a>
+                    <a className="contact-submenu-link" href="mailto:fernando30_96@hotmail.com">
+                      fernando30_96@hotmail.com
+                    </a>
+                    <a
+                      className="contact-submenu-link"
+                      href={`${import.meta.env.BASE_URL}my-cv.pdf`}
+                      download="Fernando-Esquivel-CV.pdf"
+                    >
+                      My CV
+                    </a>
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
           <button
@@ -206,34 +227,9 @@ function App() {
           </button>
         </header>
 
-        <section id="about" className="portfolio-section about-section px-6 sm:px-10">
-          <div className="about-index scroll-reveal">
-            <p className="section-kicker">A LITTLE ABOUT ME</p>
-          </div>
-          <div className="about-copy scroll-reveal">
-            <h2>It's in the little details.</h2>
-            <p>
-              I've always been someone who notices the little details: the references in
-              movies and games, the nods and homages to other great artists and media,
-              and the care put into software that makes users feel an emotional attachment.
-              I notice the details that prove a developer cares. Any misspelled word, any
-              process in need of an upgrade, any development that needs a keen eye—that's
-              where I shine.
-            </p>
-          </div>
-          <div
-            className="about-image-placeholder scroll-reveal"
-            role="img"
-            aria-label="Image placeholder"
-          />
-        </section>
-
         <section id="capabilities" className="portfolio-section capabilities-section px-6 sm:px-10">
-          <div className="section-heading scroll-reveal">
-            <div>
-              <p className="section-kicker">MY EXPERIENCE</p>
-              <h2>My professional path</h2>
-            </div>
+          <div className="section-heading">
+            <h1>My professional experience</h1>
           </div>
           <div className="capability-list">
             <article className="capability-card scroll-reveal">
@@ -264,7 +260,6 @@ function App() {
         >
           <div className="section-heading px-6 sm:px-10">
             <div>
-              <p className="section-kicker">THE WORK</p>
               <h2>Localization QA - Lionbridge</h2>
             </div>
             <p className="section-description">
@@ -302,7 +297,7 @@ function App() {
                       <span className="card-category">{place.category}</span>
                     </div>
                     <div className="card-caption">
-                      <h2>{place.name}</h2>
+                      <h3>{place.name}</h3>
                       <p>{place.location}</p>
                     </div>
                   </article>
@@ -327,8 +322,25 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="portfolio-section contact-section scroll-reveal px-6 text-center sm:px-10">
-          <p className="section-kicker">CONTACT</p>
+        <section id="about" className="portfolio-section about-section px-6 sm:px-10" aria-label="About">
+          <div className="about-copy scroll-reveal">
+            <p>
+              I've always been someone who notices the little details: the references in
+              movies and games, the nods and homages to other great artists and media,
+              and the care put into software that makes users feel an emotional attachment.
+              I notice the details that prove a developer cares. Any misspelled word, any
+              process in need of an upgrade, any development that needs a keen eye. That's
+              where I shine.
+            </p>
+          </div>
+          <div
+            className="about-image-placeholder scroll-reveal"
+            role="img"
+            aria-label="Image placeholder"
+          />
+        </section>
+
+        <section id="contact" className="portfolio-section contact-section scroll-reveal px-6 sm:px-10">
           <h2>Get in contact with me:</h2>
           <div className="contact-methods" aria-label="Contact information">
             <article className="contact-method">
