@@ -266,6 +266,11 @@ function App() {
                 carefully categorizing critical data utilizing internal Guidelines, following
                 required safety and privacy standards.
               </p>
+              <p>
+                AI Content Auditor focused on Quality checks for AI responses and user-asked
+                questions to teach AI Language Modules how to asses for better answers, better
+                understand user inputs and ensure internal standards are met.
+              </p>
             </details>
             <details className="capability-card scroll-reveal" open>
               <summary>
