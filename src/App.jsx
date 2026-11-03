@@ -57,6 +57,7 @@ function App() {
   const [isDragging, setIsDragging] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isContactMenuOpen, setIsContactMenuOpen] = useState(false)
   const [isBrandClicked, setIsBrandClicked] = useState(false)
   const dragStart = useRef(null)
   const carouselRef = useRef(null)
@@ -186,15 +187,35 @@ function App() {
                 className={`nav-item${item.label === 'CONTACT' ? ' nav-item-contact' : ''}`}
                 key={item.label}
               >
-                <a
-                  className="nav-link"
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
+                {item.label === 'CONTACT' ? (
+                  <button
+                    className="nav-link nav-contact-toggle"
+                    type="button"
+                    aria-expanded={isContactMenuOpen}
+                    aria-controls="contact-submenu"
+                    onClick={() => setIsContactMenuOpen((open) => !open)}
+                  >
+                    {item.label}
+                  </button>
+                ) : (
+                  <a
+                    className="nav-link"
+                    href={item.href}
+                    onClick={() => {
+                      setIsMenuOpen(false)
+                      setIsContactMenuOpen(false)
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                )}
                 {item.label === 'CONTACT' && (
-                  <div className="contact-submenu" aria-label="Contact options">
+                  <div
+                    className={`contact-submenu${isContactMenuOpen ? ' is-open' : ''}`}
+                    id="contact-submenu"
+                    aria-label="Contact options"
+                    aria-hidden={!isContactMenuOpen}
+                  >
                     <a className="contact-submenu-link" href="tel:+50687196676">
                       +506 8719-6676
                     </a>
@@ -219,7 +240,10 @@ function App() {
             aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={isMenuOpen}
             aria-controls="main-navigation"
-            onClick={() => setIsMenuOpen((open) => !open)}
+            onClick={() => {
+              setIsMenuOpen((open) => !open)
+              setIsContactMenuOpen(false)
+            }}
           >
             <span />
             <span />
@@ -232,18 +256,39 @@ function App() {
             <h1>My professional experience</h1>
           </div>
           <div className="capability-list">
-            <article className="capability-card scroll-reveal">
-              <h3>Amazon Alexa AI services</h3>
-              <p>Transcriptions behavioral services for Alexa's LLM</p>
-            </article>
-            <article className="capability-card scroll-reveal">
-              <h3>Xbox testing for Certification</h3>
-              <p>Testing Xbox titles against certification requirements.</p>
-            </article>
-            <article className="capability-card scroll-reveal">
-              <h3>Localization software testing</h3>
-              <p>Checking localized software for language quality, functionality, and consistency.</p>
-            </article>
+            <details className="capability-card scroll-reveal" open>
+              <summary>
+                <span className="capability-title" role="heading" aria-level="2">Amazon Alexa AI services</span>
+                <span className="capability-dates">2019-2022 &amp; 2025-Present</span>
+              </summary>
+              <p>
+                AI Data Annotation focused on Transcriptions to train AI Language Models by
+                carefully categorizing critical data utilizing internal Guidelines, following
+                required safety and privacy standards.
+              </p>
+            </details>
+            <details className="capability-card scroll-reveal" open>
+              <summary>
+                <span className="capability-title" role="heading" aria-level="2">Xbox testing for Certification</span>
+                <span className="capability-dates">2023-2024</span>
+              </summary>
+              <p>
+                Videogame QA manual testing utilizing diverse reporting tools heavily influenced
+                by team communication, detailed bug writing and auditing, attention to detail and
+                time management. Wide knowledge of the videogame industry as well.
+              </p>
+            </details>
+            <details className="capability-card scroll-reveal" open>
+              <summary>
+                <span className="capability-title" role="heading" aria-level="2">Localization software testing</span>
+                <span className="capability-dates">2024-2025</span>
+              </summary>
+              <p>
+                Videogame Localization QA utilizing diverse reporting tools heavily influenced
+                by team communication, detailed bug writing and auditing, attention to detail and
+                time management. Wide knowledge of the videogame industry as well.
+              </p>
+            </details>
           </div>
         </section>
 
@@ -323,6 +368,7 @@ function App() {
         </section>
 
         <section id="about" className="portfolio-section about-section px-6 sm:px-10" aria-label="About">
+          <h2 className="about-heading">About me</h2>
           <div className="about-copy scroll-reveal">
             <p>
               I've always been someone who notices the little details: the references in
@@ -368,7 +414,13 @@ function App() {
               </svg>
               <div>
                 <h3>LinkedIn</h3>
-                <p>LinkedIn profile coming soon</p>
+                <a
+                  href="https://www.linkedin.com/in/fernando-esquivel-hidalgo-13b31a174/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  LinkedIn profile
+                </a>
               </div>
             </article>
           </div>

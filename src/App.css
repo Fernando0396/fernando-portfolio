@@ -201,6 +201,14 @@
   transition: color 180ms ease;
 }
 
+.nav-contact-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+
 .nav-link::after {
   position: absolute;
   right: 0;
@@ -247,8 +255,7 @@
     visibility 180ms;
 }
 
-.nav-item-contact:hover .contact-submenu,
-.nav-item-contact:focus-within .contact-submenu {
+.contact-submenu.is-open {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
@@ -630,19 +637,58 @@
   -webkit-backdrop-filter: blur(18px) saturate(135%);
 }
 
-.capability-card > span {
-  color: var(--pink);
-  font-size: 8px;
-  letter-spacing: 1.3px;
+.capability-card summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 18px;
+  list-style: none;
+  cursor: pointer;
 }
 
-.capability-card h3 {
-  margin: 0 0 9px;
+.capability-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.capability-title {
   color: var(--lavender);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 21px;
   font-weight: 400;
   letter-spacing: -0.03em;
+}
+
+.capability-dates {
+  flex: 0 0 auto;
+  color: var(--cyan);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.capability-card summary:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+.capability-card p {
+  margin-top: 12px;
+}
+
+.about-section {
+  border-top: 1px solid var(--line);
+}
+
+.about-heading {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--lavender);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 5vw, 58px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
 }
 
 .capability-card p {
@@ -845,7 +891,7 @@
 
   .contact-submenu {
     position: static;
-    display: grid;
+    display: none;
     width: auto;
     min-width: 0;
     margin: 0 0 8px 8px;
@@ -856,11 +902,18 @@
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: none;
+    visibility: hidden;
+    transition: none;
+  }
+
+  .contact-submenu.is-open {
+    display: grid;
     opacity: 1;
     pointer-events: auto;
-    transform: none;
     visibility: visible;
-    transition: none;
   }
 
   .contact-submenu-link {
@@ -915,8 +968,14 @@
     padding: 18px;
   }
 
-  .capability-card h3 {
-    margin-top: 12px;
+  .capability-card summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .capability-dates {
+    font-size: 10px;
   }
 
   .contact-section {
