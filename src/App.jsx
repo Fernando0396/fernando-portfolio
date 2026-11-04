@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import avowedImage from './assets/avowed.jpg'
+import avowedCreditsImage from './assets/avowed-credits.jpg'
 import bloomAndRageImage from './assets/bloom-and-rage.png'
+import bloomAndRageCreditsImage from './assets/bloom-and-rage-credits.jpg'
 import mindsEyeImage from './assets/mindseye.jpg'
 import slimeRancherImage from './assets/slime-rancher-2.jpg'
 import './App.css'
@@ -13,6 +15,8 @@ const places = [
     number: '01',
     image: bloomAndRageImage,
     alt: 'Lost Records: Bloom & Rage key art featuring four friends in a forest',
+    creditsImage: bloomAndRageCreditsImage,
+    creditsAlt: 'Lost Records: Bloom & Rage localization credits listing Fernando Esquivel Hidalgo',
     color: '#c26d45',
   },
   {
@@ -22,6 +26,8 @@ const places = [
     number: '02',
     image: avowedImage,
     alt: 'Avowed key art showing a fantasy warrior and sword',
+    creditsImage: avowedCreditsImage,
+    creditsAlt: 'Avowed localization credits listing Fernando Esquivel for Spanish Latin America',
     color: '#56756f',
   },
   {
@@ -55,6 +61,7 @@ function App() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [dragOffset, setDragOffset] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
+  const [showingCreditsFor, setShowingCreditsFor] = useState(null)
   const [isPaused, setIsPaused] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isContactMenuOpen, setIsContactMenuOpen] = useState(false)
@@ -68,6 +75,7 @@ function App() {
     if (isPaused || isDragging) return undefined
 
     const timer = window.setInterval(() => {
+      setShowingCreditsFor(null)
       setActiveIndex((index) => (index + 1) % places.length)
     }, 10000)
 
@@ -129,12 +137,23 @@ function App() {
   }
 
   const moveTo = (direction) => {
+    setShowingCreditsFor(null)
     setActiveIndex((index) => (index + direction + places.length) % places.length)
+  }
+
+  const toggleCredits = (index) => {
+    setActiveIndex(index)
+    setShowingCreditsFor((current) => current === index ? null : index)
   }
 
   const handlePointerDown = (event) => {
     if (event.pointerType === 'mouse' && event.button !== 0) return
-    dragStart.current = { x: event.clientX, pointerId: event.pointerId }
+    const creditsButton = event.target.closest('.credits-image-toggle')
+    dragStart.current = {
+      x: event.clientX,
+      pointerId: event.pointerId,
+      creditsIndex: creditsButton ? Number(creditsButton.dataset.creditIndex) : null,
+    }
     setIsDragging(true)
     event.currentTarget.setPointerCapture(event.pointerId)
   }
@@ -147,8 +166,13 @@ function App() {
   const handlePointerUp = (event) => {
     if (!dragStart.current || dragStart.current.pointerId !== event.pointerId) return
 
-    const distance = event.clientX - dragStart.current.x
-    if (Math.abs(distance) > 55) moveTo(distance < 0 ? 1 : -1)
+    const { creditsIndex, x } = dragStart.current
+    const distance = event.clientX - x
+    if (Math.abs(distance) > 55) {
+      moveTo(distance < 0 ? 1 : -1)
+    } else if (creditsIndex !== null && Math.abs(distance) < 12) {
+      toggleCredits(creditsIndex)
+    }
     dragStart.current = null
     setDragOffset(0)
     setIsDragging(false)
@@ -348,20 +372,41 @@ function App() {
             <div className="carousel-track">
               {places.map((place, index) => {
                 const isActive = index === activeIndex
+                const isShowingCredits = showingCreditsFor === index
                 return (
                   <article
-                    className={`place-card ${isActive ? 'is-active' : ''}`}
+                    className={`place-card ${isActive ? 'is-active' : ''}${isShowingCredits ? ' is-showing-credits' : ''}`}
                     key={place.number}
                     aria-current={isActive ? 'true' : undefined}
                     aria-label={`${place.number} of ${places.length}: ${place.name}, ${place.location}`}
                     style={{ '--card-accent': place.color }}
                   >
                     <img className="place-image" src={place.image} alt={place.alt} draggable="false" />
+                    {place.creditsImage && (
+                      <>
+                        <img
+                          className={`place-image credits-image${isShowingCredits ? ' is-visible' : ''}`}
+                          src={place.creditsImage}
+                          alt={place.creditsAlt}
+                          draggable="false"
+                        />
+                        <button
+                          className="credits-image-toggle"
+                          data-credit-index={index}
+                          type="button"
+                          aria-label={`${isShowingCredits ? 'Show' : 'View'} ${place.name} ${isShowingCredits ? 'artwork' : 'localization credits'}`}
+                          aria-pressed={isShowingCredits}
+                          onClick={(event) => {
+                            if (event.detail === 0) toggleCredits(index)
+                          }}
+                        />
+                      </>
+                    )}
                     <div className="card-shade" />
-                    <div className="card-topline">
+                    <div className="card-topline" aria-hidden="true">
                       <span className="card-category">{place.category}</span>
                     </div>
-                    <div className="card-caption">
+                    <div className="card-caption" aria-hidden="true">
                       <h3>{place.name}</h3>
                       <p>{place.location}</p>
                     </div>
@@ -378,7 +423,10 @@ function App() {
                   className={`progress-dot ${index === activeIndex ? 'is-active' : ''}`}
                   key={place.number}
                   type="button"
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => {
+                    setShowingCreditsFor(null)
+                    setActiveIndex(index)
+                  }}
                   aria-label={`Show ${place.name}`}
                   aria-current={index === activeIndex ? 'true' : undefined}
                 />
