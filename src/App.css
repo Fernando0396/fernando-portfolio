@@ -637,6 +637,74 @@
   line-height: 1.9;
 }
 
+.skills-panel {
+  margin-top: 32px;
+}
+
+.skills-panel h3 {
+  margin: 0;
+  color: var(--lavender);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.skills-level-guide {
+  margin: 8px 0 18px !important;
+  color: var(--cyan) !important;
+  font-size: 9px !important;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-item {
+  min-width: 0;
+}
+
+.skill-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 7px;
+  color: var(--lavender);
+  font-size: 11px;
+}
+
+.skill-label span:last-child {
+  color: var(--muted-lavender);
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.skill-meter {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  height: 8px;
+}
+
+.skill-meter-segment {
+  border: 1px solid rgb(201 166 255 / 27%);
+  border-radius: 2px;
+  background: rgb(16 10 36 / 55%);
+}
+
+.skill-meter-segment.is-filled {
+  border-color: rgb(83 224 229 / 62%);
+  background: linear-gradient(90deg, var(--pink), var(--purple) 55%, var(--cyan));
+  box-shadow: 0 0 8px rgb(83 224 229 / 22%);
+}
+
 .about-image-placeholder {
   width: 100%;
   min-height: 300px;
@@ -995,6 +1063,11 @@
   .about-copy p {
     margin-top: 16px;
     font-size: 12px;
+  }
+
+  .skills-list {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .capabilities-section {

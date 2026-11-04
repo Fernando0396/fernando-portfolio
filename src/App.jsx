@@ -57,6 +57,18 @@ const navigationItems = [
   { label: 'CONTACT', href: '#contact' },
 ]
 
+const skillLevels = ['Basic', 'Beginner', 'Intermediate', 'Advanced']
+
+const skills = [
+  { name: 'MySQL', level: 'Advanced' },
+  { name: 'HTML5', level: 'Advanced' },
+  { name: 'CSS3', level: 'Advanced' },
+  { name: 'Tailwind CSS', level: 'Advanced' },
+  { name: 'Java', level: 'Beginner' },
+  { name: 'Python', level: 'Basic' },
+  { name: 'JavaScript', level: 'Beginner' },
+]
+
 function App() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [dragOffset, setDragOffset] = useState(0)
@@ -446,6 +458,40 @@ function App() {
               process in need of an upgrade, any development that needs a keen eye. That's
               where I shine.
             </p>
+            <div className="skills-panel">
+              <h3>Skills</h3>
+              <p className="skills-level-guide">{skillLevels.join('  /  ')}</p>
+              <ul className="skills-list">
+                {skills.map((skill) => {
+                  const levelIndex = skillLevels.indexOf(skill.level)
+                  return (
+                    <li className="skill-item" key={skill.name}>
+                      <div className="skill-label">
+                        <span>{skill.name}</span>
+                        <span>{skill.level}</span>
+                      </div>
+                      <div
+                        className="skill-meter"
+                        role="meter"
+                        aria-label={`${skill.name} skill level`}
+                        aria-valuemin={1}
+                        aria-valuemax={skillLevels.length}
+                        aria-valuenow={levelIndex + 1}
+                        aria-valuetext={skill.level}
+                      >
+                        {skillLevels.map((level, index) => (
+                          <span
+                            className={`skill-meter-segment${index <= levelIndex ? ' is-filled' : ''}`}
+                            key={level}
+                            aria-hidden="true"
+                          />
+                        ))}
+                      </div>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
           </div>
           <div
             className="about-image-placeholder scroll-reveal"
