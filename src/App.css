@@ -683,20 +683,11 @@
   font-weight: 400;
 }
 
-.skills-level-guide {
-  margin: 8px 0 18px !important;
-  color: var(--cyan) !important;
-  font-size: 9px !important;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
 .skills-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px 24px;
-  margin: 0;
+  gap: 20px 24px;
+  margin: 18px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -737,6 +728,22 @@
   border-color: rgb(83 224 229 / 62%);
   background: linear-gradient(90deg, var(--pink), var(--purple) 55%, var(--cyan));
   box-shadow: 0 0 8px rgb(83 224 229 / 22%);
+}
+
+.skill-meter-labels {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  margin-top: 5px;
+  color: var(--muted-lavender);
+  font-size: clamp(6px, 0.65vw, 8px);
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.skill-meter-labels span {
+  white-space: nowrap;
 }
 
 .about-image-placeholder {

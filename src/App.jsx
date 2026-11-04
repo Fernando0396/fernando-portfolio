@@ -460,7 +460,6 @@ function App() {
             </p>
             <div className="skills-panel">
               <h3>Skills</h3>
-              <p className="skills-level-guide">{skillLevels.join('  /  ')}</p>
               <ul className="skills-list">
                 {skills.map((skill) => {
                   const levelIndex = skillLevels.indexOf(skill.level)
@@ -486,6 +485,9 @@ function App() {
                             aria-hidden="true"
                           />
                         ))}
+                      </div>
+                      <div className="skill-meter-labels" aria-hidden="true">
+                        {skillLevels.map((level) => <span key={level}>{level}</span>)}
                       </div>
                     </li>
                   )
