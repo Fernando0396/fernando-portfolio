@@ -495,9 +495,43 @@
   cursor: pointer;
 }
 
+.credits-image-toggle::after {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 7px 10px;
+  border: 1px solid rgb(249 239 255 / 20%);
+  border-radius: 999px;
+  background: rgb(16 10 36 / 45%);
+  color: rgb(249 239 255 / 76%);
+  content: "CLICK TO VIEW CREDITS";
+  font: 600 8px/1.2 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: 0 1px 5px rgb(16 10 36 / 55%);
+  backdrop-filter: blur(8px);
+}
+
+.place-card.is-active:not(.is-showing-credits) .credits-image-toggle::after {
+  animation: credits-hint 4s ease-out 700ms both;
+}
+
+.credits-image-toggle:hover::after,
+.credits-image-toggle:focus-visible::after {
+  animation: none;
+  opacity: 0.62;
+  transition: opacity 180ms ease;
+}
+
 .credits-image-toggle:focus-visible {
   outline: 3px solid var(--cyan);
   outline-offset: -5px;
+}
+
+@keyframes credits-hint {
+  0%, 100% { opacity: 0; }
+  18%, 72% { opacity: 0.48; }
 }
 
 .card-topline,
