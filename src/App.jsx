@@ -61,6 +61,7 @@ function App() {
   const [isBrandClicked, setIsBrandClicked] = useState(false)
   const dragStart = useRef(null)
   const carouselRef = useRef(null)
+  const navigationRef = useRef(null)
   const brandAnimationTimer = useRef(null)
 
   useEffect(() => {
@@ -94,6 +95,19 @@ function App() {
 
     return () => observer.disconnect()
   }, [])
+
+  useEffect(() => {
+    if (!isContactMenuOpen) return undefined
+
+    const closeOnOutsidePointer = (event) => {
+      if (!navigationRef.current?.contains(event.target)) {
+        setIsContactMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', closeOnOutsidePointer)
+    return () => document.removeEventListener('pointerdown', closeOnOutsidePointer)
+  }, [isContactMenuOpen])
 
   useEffect(
     () => () => {
@@ -178,6 +192,7 @@ function App() {
             <span>Fernando Esquivel H.</span>
           </div>
           <nav
+            ref={navigationRef}
             id="main-navigation"
             className={`header-nav ${isMenuOpen ? 'is-open' : ''}`}
             aria-label="Main navigation"
