@@ -323,39 +323,23 @@ function App() {
               {
                 title: 'Amazon Alexa AI services',
                 dates: '2019-2022 & 2025-Present',
-                paragraphs: [
-                  <>
-                    AI Data Annotation focused on Transcriptions to train AI Language Models by
-                    carefully categorizing critical data utilizing internal Guidelines, following
-                    required safety and privacy standards.
-                  </>,
-                  <>
-                    AI Content Auditor focused on Quality checks for AI responses and user-asked
-                    questions to teach AI Language Modules how to asses for better answers, better
-                    understand user inputs and ensure internal standards are met.
-                  </>,
+                bulletPoints: [
+                  'AI Data Annotation focused on Transcriptions to train AI Language Models by carefully categorizing critical data utilizing internal Guidelines, following required safety and privacy standards.',
+                  'AI Content Auditor focused on Quality checks for AI responses and user-asked questions to teach AI Language Modules how to asses for better answers, better understand user inputs and ensure internal standards are met.',
                 ],
               },
               {
                 title: 'Xbox testing for Certification',
                 dates: '2023-2024',
-                paragraphs: [
-                  <>
-                    Videogame QA manual testing utilizing diverse reporting tools heavily influenced
-                    by team communication, detailed bug writing and auditing, attention to detail and
-                    time management. Wide knowledge of the videogame industry as well.
-                  </>,
+                bulletPoints: [
+                  'Videogame QA manual testing utilizing diverse reporting tools heavily influenced by team communication, detailed bug writing and auditing, attention to detail and time management. Wide knowledge of the videogame industry as well.',
                 ],
               },
               {
                 title: 'Localization software testing',
                 dates: '2024-2025',
-                paragraphs: [
-                  <>
-                    Videogame Localization QA utilizing diverse reporting tools heavily influenced
-                    by team communication, detailed bug writing and auditing, attention to detail and
-                    time management. Wide knowledge of the videogame industry as well.
-                  </>,
+                bulletPoints: [
+                  'Videogame Localization QA utilizing diverse reporting tools heavily influenced by team communication, detailed bug writing and auditing, attention to detail and time management. Wide knowledge of the videogame industry as well.',
                 ],
               },
             ].map((experience, index) => {
@@ -380,9 +364,11 @@ function App() {
                     aria-hidden={!isExpanded}
                   >
                     <div className="capability-content-inner">
-                      {experience.paragraphs.map((paragraph, paragraphIndex) => (
-                        <p key={paragraphIndex}>{paragraph}</p>
-                      ))}
+                      <ul className="capability-bullets">
+                        {experience.bulletPoints.map((bullet, bulletIndex) => (
+                          <li key={bulletIndex}>{bullet}</li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </article>

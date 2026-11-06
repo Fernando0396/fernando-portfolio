@@ -868,11 +868,23 @@
   letter-spacing: 0.02em;
 }
 
-.capability-card p {
-  margin: 0 0 10px;
+.capability-bullets {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 18px;
   color: var(--muted-lavender);
   font-size: 11px;
   line-height: 1.7;
+  list-style: disc;
+}
+
+.capability-bullets li::marker {
+  color: var(--cyan);
+}
+
+.capability-bullets li {
+  padding-left: 3px;
 }
 
 .about-section {
