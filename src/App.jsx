@@ -77,10 +77,11 @@ function App() {
   const [isPaused, setIsPaused] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isContactMenuOpen, setIsContactMenuOpen] = useState(false)
+  const [expandedExperiences, setExpandedExperiences] = useState([true, true, true])
   const [isBrandClicked, setIsBrandClicked] = useState(false)
   const dragStart = useRef(null)
   const carouselRef = useRef(null)
-  const navigationRef = useRef(null)
+  const headerRef = useRef(null)
   const brandAnimationTimer = useRef(null)
 
   useEffect(() => {
@@ -117,17 +118,18 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (!isContactMenuOpen) return undefined
+    if (!isMenuOpen && !isContactMenuOpen) return undefined
 
     const closeOnOutsidePointer = (event) => {
-      if (!navigationRef.current?.contains(event.target)) {
+      if (!headerRef.current?.contains(event.target)) {
+        setIsMenuOpen(false)
         setIsContactMenuOpen(false)
       }
     }
 
     document.addEventListener('pointerdown', closeOnOutsidePointer)
     return () => document.removeEventListener('pointerdown', closeOnOutsidePointer)
-  }, [isContactMenuOpen])
+  }, [isContactMenuOpen, isMenuOpen])
 
   useEffect(
     () => () => {
@@ -156,6 +158,12 @@ function App() {
   const toggleCredits = (index) => {
     setActiveIndex(index)
     setShowingCreditsFor((current) => current === index ? null : index)
+  }
+
+  const toggleExperience = (index) => {
+    setExpandedExperiences((current) =>
+      current.map((isExpanded, itemIndex) => itemIndex === index ? !isExpanded : isExpanded),
+    )
   }
 
   const handlePointerDown = (event) => {
@@ -211,7 +219,7 @@ function App() {
     <>
       <main className="min-h-screen overflow-hidden bg-[#100a24] text-[#f9efff]">
       <div className="site-shell mx-auto flex min-h-screen max-w-[1126px] flex-col">
-        <header className="topbar flex items-center justify-between px-5 sm:px-8 lg:px-10">
+        <header ref={headerRef} className="topbar flex items-center justify-between px-5 sm:px-8 lg:px-10">
           <div className="brand flex items-center gap-2.5">
             <a
               className={`brand-icon${isBrandClicked ? ' is-clicked' : ''}`}
@@ -228,7 +236,6 @@ function App() {
             <span>Fernando Esquivel H.</span>
           </div>
           <nav
-            ref={navigationRef}
             id="main-navigation"
             className={`header-nav ${isMenuOpen ? 'is-open' : ''}`}
             aria-label="Main navigation"
@@ -307,44 +314,75 @@ function App() {
             <h1>My professional experience</h1>
           </div>
           <div className="capability-list">
-            <details className="capability-card scroll-reveal" open>
-              <summary>
-                <span className="capability-title" role="heading" aria-level="2">Amazon Alexa AI services</span>
-                <span className="capability-dates">2019-2022 &amp; 2025-Present</span>
-              </summary>
-              <p>
-                AI Data Annotation focused on Transcriptions to train AI Language Models by
-                carefully categorizing critical data utilizing internal Guidelines, following
-                required safety and privacy standards.
-              </p>
-              <p>
-                AI Content Auditor focused on Quality checks for AI responses and user-asked
-                questions to teach AI Language Modules how to asses for better answers, better
-                understand user inputs and ensure internal standards are met.
-              </p>
-            </details>
-            <details className="capability-card scroll-reveal" open>
-              <summary>
-                <span className="capability-title" role="heading" aria-level="2">Xbox testing for Certification</span>
-                <span className="capability-dates">2023-2024</span>
-              </summary>
-              <p>
-                Videogame QA manual testing utilizing diverse reporting tools heavily influenced
-                by team communication, detailed bug writing and auditing, attention to detail and
-                time management. Wide knowledge of the videogame industry as well.
-              </p>
-            </details>
-            <details className="capability-card scroll-reveal" open>
-              <summary>
-                <span className="capability-title" role="heading" aria-level="2">Localization software testing</span>
-                <span className="capability-dates">2024-2025</span>
-              </summary>
-              <p>
-                Videogame Localization QA utilizing diverse reporting tools heavily influenced
-                by team communication, detailed bug writing and auditing, attention to detail and
-                time management. Wide knowledge of the videogame industry as well.
-              </p>
-            </details>
+            {[
+              {
+                title: 'Amazon Alexa AI services',
+                dates: '2019-2022 & 2025-Present',
+                paragraphs: [
+                  <>
+                    AI Data Annotation focused on Transcriptions to train AI Language Models by
+                    carefully categorizing critical data utilizing internal Guidelines, following
+                    required safety and privacy standards.
+                  </>,
+                  <>
+                    AI Content Auditor focused on Quality checks for AI responses and user-asked
+                    questions to teach AI Language Modules how to asses for better answers, better
+                    understand user inputs and ensure internal standards are met.
+                  </>,
+                ],
+              },
+              {
+                title: 'Xbox testing for Certification',
+                dates: '2023-2024',
+                paragraphs: [
+                  <>
+                    Videogame QA manual testing utilizing diverse reporting tools heavily influenced
+                    by team communication, detailed bug writing and auditing, attention to detail and
+                    time management. Wide knowledge of the videogame industry as well.
+                  </>,
+                ],
+              },
+              {
+                title: 'Localization software testing',
+                dates: '2024-2025',
+                paragraphs: [
+                  <>
+                    Videogame Localization QA utilizing diverse reporting tools heavily influenced
+                    by team communication, detailed bug writing and auditing, attention to detail and
+                    time management. Wide knowledge of the videogame industry as well.
+                  </>,
+                ],
+              },
+            ].map((experience, index) => {
+              const isExpanded = expandedExperiences[index]
+              const contentId = `capability-content-${index}`
+              return (
+                <article className="capability-card scroll-reveal" key={experience.title}>
+                  <button
+                    className="capability-toggle"
+                    type="button"
+                    aria-expanded={isExpanded}
+                    aria-controls={contentId}
+                    onClick={() => toggleExperience(index)}
+                  >
+                    <span className="capability-title" role="heading" aria-level="2">{experience.title}</span>
+                    <span className="capability-dates">{experience.dates}</span>
+                    <span className={`capability-chevron${isExpanded ? ' is-open' : ''}`} aria-hidden="true" />
+                  </button>
+                  <div
+                    className={`capability-content${isExpanded ? ' is-open' : ''}`}
+                    id={contentId}
+                    aria-hidden={!isExpanded}
+                  >
+                    <div className="capability-content-inner">
+                      {experience.paragraphs.map((paragraph, paragraphIndex) => (
+                        <p key={paragraphIndex}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </section>
 
@@ -414,6 +452,7 @@ function App() {
                         />
                       </>
                     )}
+                    {!place.creditsImage && <span className="credits-image-hint" aria-hidden="true" />}
                     <div className="card-shade" />
                     <div className="card-topline" aria-hidden="true">
                       <span className="card-category">{place.category}</span>
@@ -467,7 +506,6 @@ function App() {
                     <li className="skill-item" key={skill.name}>
                       <div className="skill-label">
                         <span>{skill.name}</span>
-                        <span>{skill.level}</span>
                       </div>
                       <div
                         className="skill-meter"
