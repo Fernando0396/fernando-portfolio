@@ -284,6 +284,11 @@ function App() {
                       className="contact-submenu-link"
                       href={`${import.meta.env.BASE_URL}my-cv.pdf`}
                       download="Fernando-Esquivel-CV.pdf"
+                      onClick={(event) => {
+                        if (!window.confirm('Would you like to download my CV?')) {
+                          event.preventDefault()
+                        }
+                      }}
                     >
                       My CV
                     </a>
