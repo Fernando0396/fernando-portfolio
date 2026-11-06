@@ -178,7 +178,7 @@
 
 .header-nav {
   position: absolute;
-  left: 50%;
+  left: calc(50% + 32px);
   display: flex;
   width: min(42%, 420px);
   align-items: center;
@@ -498,20 +498,19 @@
 .credits-image-toggle::after,
 .credits-image-hint::after {
   position: absolute;
-  bottom: clamp(24px, 6%, 52px);
-  left: 50%;
-  padding: 10px 16px;
-  border: 1px solid rgb(249 239 255 / 42%);
+  top: 16px;
+  right: 16px;
+  padding: 6px 9px;
+  border: 1px solid rgb(249 239 255 / 32%);
   border-radius: 999px;
   background: rgb(16 10 36 / 76%);
-  color: rgb(249 239 255 / 96%);
+  color: rgb(249 239 255 / 92%);
   content: "CLICK TO VIEW CREDITS";
-  font: 600 10px/1.2 "Helvetica Neue", Helvetica, Arial, sans-serif;
-  letter-spacing: 0.14em;
+  font: 600 8px/1.2 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.1em;
   opacity: 0;
   pointer-events: none;
   text-shadow: 0 1px 8px rgb(16 10 36 / 85%);
-  transform: translateX(-50%) scale(0.96);
   backdrop-filter: blur(12px);
 }
 
@@ -524,23 +523,12 @@
 .place-card:not(.is-showing-credits) .credits-image-toggle:hover::after,
 .place-card:not(.is-showing-credits) .credits-image-toggle:focus-visible::after,
 .place-card:not(.is-showing-credits):hover .credits-image-hint::after {
-  animation: credits-hint-breathe 1.8s ease-in-out infinite;
+  opacity: 0.9;
 }
 
 .credits-image-toggle:focus-visible {
   outline: 3px solid var(--cyan);
   outline-offset: -5px;
-}
-
-@keyframes credits-hint-breathe {
-  0%, 100% {
-    opacity: 0.76;
-    transform: translateX(-50%) scale(0.97);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.04);
-  }
 }
 
 .card-topline,
@@ -750,8 +738,9 @@
 }
 
 .about-image-placeholder {
-  width: 100%;
-  min-height: 300px;
+  width: min(88%, 440px);
+  min-height: 260px;
+  justify-self: center;
   aspect-ratio: 4 / 3;
   border: 1px solid rgb(201 166 255 / 27%);
   border-radius: 14px;
@@ -799,16 +788,25 @@
 
 .capability-toggle {
   display: grid;
-  width: 100%;
+  width: calc(100% + 16px);
+  min-height: 56px;
   grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 8px 18px;
-  padding: 0;
+  margin: -10px -8px;
+  padding: 10px 8px;
   border: 0;
+  border-radius: 8px;
   background: none;
   color: inherit;
   cursor: pointer;
   text-align: left;
+  transition: background-color 180ms ease;
+}
+
+.capability-toggle:hover,
+.capability-toggle:focus-visible {
+  background: rgb(255 255 255 / 5%);
 }
 
 .capability-chevron {
@@ -825,9 +823,8 @@
 }
 
 .capability-toggle:focus-visible {
-  border-radius: 3px;
   outline: 2px solid var(--cyan);
-  outline-offset: 4px;
+  outline-offset: 2px;
 }
 
 .capability-content {
@@ -1131,7 +1128,8 @@
   }
 
   .about-image-placeholder {
-    min-height: 220px;
+    width: 90%;
+    min-height: 200px;
     margin-top: 12px;
   }
 
@@ -1205,7 +1203,7 @@
 
   .place-card.is-active:not(.is-showing-credits) .credits-image-toggle::after,
   .place-card.is-active:not(.is-showing-credits) .credits-image-hint::after {
-    animation: credits-hint-breathe 1.8s ease-in-out infinite;
+    opacity: 0.82;
   }
 
   .card-caption h3 {

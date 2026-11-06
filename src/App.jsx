@@ -580,7 +580,7 @@ function App() {
           </div>
         </section>
 
-        <footer className="page-footer mt-auto flex flex-col items-center justify-between gap-3 px-6 sm:flex-row sm:px-10 lg:px-10">
+        <footer className="page-footer mt-auto flex flex-col items-center justify-center gap-3 px-6 sm:flex-row sm:px-10 lg:px-10">
           <span>PORTFOLIO — 2026</span>
         </footer>
       </div>
