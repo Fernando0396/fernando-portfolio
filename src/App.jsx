@@ -3,6 +3,7 @@ import avowedImage from './assets/avowed.jpg'
 import avowedCreditsImage from './assets/avowed-credits.jpg'
 import bloomAndRageImage from './assets/bloom-and-rage.png'
 import bloomAndRageCreditsImage from './assets/bloom-and-rage-credits.jpg'
+import fernandoAboutImage from './assets/fernando-about.jpg'
 import mindsEyeCreditsImage from './assets/mindseye-credits.jpg'
 import mindsEyeImage from './assets/mindseye.jpg'
 import slimeRancherCreditsImage from './assets/slime-rancher-2-credits.jpg'
@@ -534,10 +535,10 @@ function App() {
               </ul>
             </div>
           </div>
-          <div
-            className="about-image-placeholder scroll-reveal"
-            role="img"
-            aria-label="Image placeholder"
+          <img
+            className="about-photo scroll-reveal"
+            src={fernandoAboutImage}
+            alt="Fernando Esquivel Hidalgo"
           />
         </section>
 
