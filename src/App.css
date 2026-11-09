@@ -218,14 +218,20 @@
   display: grid;
   width: max-content;
   min-width: 230px;
-  gap: 2px;
-  padding: 8px;
-  border: 1px solid rgb(201 166 255 / 28%);
-  border-radius: 12px;
-  background: rgb(28 16 53 / 82%);
-  box-shadow: 0 18px 44px rgb(0 0 0 / 28%), inset 0 1px 0 rgb(255 255 255 / 8%);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  gap: 4px;
+  padding: 12px 10px 10px;
+  overflow: hidden;
+  border: 1px solid rgb(255 157 103 / 32%);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgb(255 157 103 / 9%), transparent 48%),
+    linear-gradient(145deg, rgb(34 18 61 / 96%), rgb(18 12 42 / 97%));
+  box-shadow:
+    0 20px 52px rgb(0 0 0 / 42%),
+    0 0 26px rgb(255 79 216 / 10%),
+    inset 0 1px 0 rgb(255 225 122 / 12%);
+  backdrop-filter: blur(22px) saturate(145%);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
   opacity: 0;
   pointer-events: none;
   transform: translateY(8px);
@@ -234,6 +240,16 @@
     opacity 180ms ease,
     transform 180ms ease,
     visibility 180ms;
+}
+
+.contact-submenu::before {
+  position: absolute;
+  top: 0;
+  right: 12px;
+  left: 12px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--sunset-orange), var(--pink), transparent);
+  content: "";
 }
 
 .contact-submenu.is-open {
@@ -246,19 +262,26 @@
 .contact-submenu-link {
   display: block;
   padding: 10px 12px;
-  border-radius: 7px;
+  border: 1px solid transparent;
+  border-radius: 8px;
   color: var(--muted-lavender);
   font-size: 11px;
   line-height: 1.4;
   overflow-wrap: anywhere;
-  transition: color 160ms ease, background 160ms ease;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
 }
 
 .contact-submenu-link:hover,
 .contact-submenu-link:focus-visible {
   outline: none;
-  background: rgb(255 79 216 / 9%);
-  color: var(--cyan);
+  border-color: rgb(255 157 103 / 20%);
+  background: linear-gradient(100deg, rgb(255 157 103 / 12%), rgb(255 79 216 / 7%));
+  color: var(--sunset-gold);
+  transform: translateX(2px);
 }
 
 .menu-toggle {
@@ -1072,11 +1095,11 @@
     width: auto;
     min-width: 0;
     gap: 3px;
-    margin: 0 0 8px 8px;
-    padding: 5px;
+    margin: 2px 0 10px 8px;
+    padding: 6px;
     border: 1px solid rgb(255 157 103 / 24%);
     border-left: 2px solid var(--sunset-orange);
-    border-radius: 9px;
+    border-radius: 10px;
     background:
       linear-gradient(110deg, rgb(255 157 103 / 8%), transparent 65%),
       rgb(16 10 36 / 40%);
@@ -1088,6 +1111,10 @@
     transform: translateY(-4px);
     visibility: hidden;
     transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+  }
+
+  .contact-submenu::before {
+    display: none;
   }
 
   .contact-submenu.is-open {
