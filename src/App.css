@@ -99,9 +99,9 @@
 }
 
 @keyframes vice-sun-click {
-  0%, 100% { transform: translateY(0) scale(1); }
-  32% { transform: translateY(-5px) scale(1.12); }
-  68% { transform: translateY(1px) scale(0.94); }
+  0%, 100% { transform: scale(1); }
+  38% { transform: scale(0.9); }
+  72% { transform: scale(1.08); }
 }
 
 @keyframes vice-sun-flare {
@@ -110,8 +110,12 @@
     filter: drop-shadow(0 0 4px rgb(255 79 216 / 45%));
   }
   38% {
-    transform: rotate(24deg) scale(1.2);
+    transform: rotate(180deg) scale(1.16);
     filter: drop-shadow(0 0 10px rgb(255 157 103 / 95%));
+  }
+  72% {
+    transform: rotate(300deg) scale(1.08);
+    filter: drop-shadow(0 0 7px rgb(255 225 122 / 85%));
   }
 }
 
@@ -667,9 +671,9 @@
 }
 
 .skill-meter-segment.is-filled {
-  border-color: rgb(83 224 229 / 62%);
-  background: linear-gradient(90deg, var(--pink), var(--purple) 55%, var(--cyan));
-  box-shadow: 0 0 8px rgb(83 224 229 / 22%);
+  border-color: rgb(255 157 103 / 72%);
+  background: linear-gradient(90deg, var(--pink), var(--sunset-orange) 58%, var(--sunset-gold));
+  box-shadow: 0 0 8px rgb(255 157 103 / 30%);
 }
 
 .skill-meter-labels {
@@ -813,10 +817,11 @@
 
 .capability-dates {
   flex: 0 0 auto;
-  color: var(--cyan);
+  color: var(--sunset-orange);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.02em;
+  text-shadow: 0 0 12px rgb(255 157 103 / 18%);
 }
 
 .capability-bullets {
