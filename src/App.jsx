@@ -287,25 +287,28 @@ function App() {
                     id="contact-submenu"
                     aria-label="Contact options"
                     aria-hidden={!isContactMenuOpen}
+                    inert={!isContactMenuOpen}
                   >
-                    <a className="contact-submenu-link" href="tel:+50687196676">
-                      +506 8719-6676
-                    </a>
-                    <a className="contact-submenu-link" href="mailto:fernando30_96@hotmail.com">
-                      fernando30_96@hotmail.com
-                    </a>
-                    <a
-                      className="contact-submenu-link"
-                      href={`${import.meta.env.BASE_URL}my-cv.pdf`}
-                      download="Fernando-Esquivel-CV.pdf"
-                      onClick={(event) => {
-                        if (!window.confirm('Would you like to download my CV?')) {
-                          event.preventDefault()
-                        }
-                      }}
-                    >
-                      My CV
-                    </a>
+                    <div className="contact-submenu-inner">
+                      <a className="contact-submenu-link" href="tel:+50687196676">
+                        +506 8719-6676
+                      </a>
+                      <a className="contact-submenu-link" href="mailto:fernando30_96@hotmail.com">
+                        fernando30_96@hotmail.com
+                      </a>
+                      <a
+                        className="contact-submenu-link"
+                        href={`${import.meta.env.BASE_URL}my-cv.pdf`}
+                        download="Fernando-Esquivel-CV.pdf"
+                        onClick={(event) => {
+                          if (!window.confirm('Would you like to download my CV?')) {
+                            event.preventDefault()
+                          }
+                        }}
+                      >
+                        My CV
+                      </a>
+                    </div>
                   </div>
                 )}
               </div>

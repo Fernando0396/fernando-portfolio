@@ -252,6 +252,11 @@
   content: "";
 }
 
+.contact-submenu-inner {
+  display: grid;
+  gap: 4px;
+}
+
 .contact-submenu.is-open {
   opacity: 1;
   pointer-events: auto;
@@ -1094,34 +1099,60 @@
     display: grid;
     width: auto;
     min-width: 0;
-    gap: 3px;
-    margin: 2px 0 10px 8px;
-    padding: 6px;
-    border: 1px solid rgb(255 157 103 / 24%);
-    border-left: 2px solid var(--sunset-orange);
-    border-radius: 10px;
-    background:
-      linear-gradient(110deg, rgb(255 157 103 / 8%), transparent 65%),
-      rgb(16 10 36 / 40%);
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    opacity: 0;
+    grid-template-rows: 0fr;
+    margin: 0 0 0 8px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     pointer-events: none;
-    transform: translateY(-4px);
-    visibility: hidden;
-    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+    transform: none;
+    visibility: visible;
+    transition:
+      grid-template-rows 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      margin-bottom 300ms ease;
   }
 
   .contact-submenu::before {
     display: none;
   }
 
+  .contact-submenu-inner {
+    min-height: 0;
+    gap: 3px;
+    overflow: hidden;
+    padding: 0 6px;
+    border: 0 solid rgb(255 157 103 / 24%);
+    border-left-width: 0;
+    border-radius: 10px;
+    background:
+      linear-gradient(110deg, rgb(255 157 103 / 8%), transparent 65%),
+      rgb(16 10 36 / 40%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease,
+      padding 300ms ease,
+      border-width 300ms ease;
+  }
+
   .contact-submenu.is-open {
-    opacity: 1;
+    grid-template-rows: 1fr;
+    margin-bottom: 10px;
     pointer-events: auto;
+  }
+
+  .contact-submenu.is-open .contact-submenu-inner {
+    padding: 6px;
+    border-width: 1px;
+    border-left-width: 2px;
+    opacity: 1;
     transform: translateY(0);
-    visibility: visible;
   }
 
   .contact-submenu-link {
