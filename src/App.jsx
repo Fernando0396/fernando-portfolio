@@ -3,15 +3,16 @@ import avowedImage from './assets/avowed.jpg'
 import avowedCreditsImage from './assets/avowed-credits.jpg'
 import bloomAndRageImage from './assets/bloom-and-rage.png'
 import bloomAndRageCreditsImage from './assets/bloom-and-rage-credits.jpg'
+import mindsEyeCreditsImage from './assets/mindseye-credits.jpg'
 import mindsEyeImage from './assets/mindseye.jpg'
+import slimeRancherCreditsImage from './assets/slime-rancher-2-credits.jpg'
 import slimeRancherImage from './assets/slime-rancher-2.jpg'
 import './App.css'
 
 const places = [
   {
     name: 'Lost Records: Bloom & Rage',
-    location: 'Narrative adventure',
-    category: "DON'T NOD MONTREAL",
+    studio: "DON'T NOD MONTREAL",
     number: '01',
     image: bloomAndRageImage,
     alt: 'Lost Records: Bloom & Rage key art featuring four friends in a forest',
@@ -21,8 +22,7 @@ const places = [
   },
   {
     name: 'Avowed',
-    location: 'Fantasy role playing',
-    category: 'Obsidian Entertainment',
+    studio: 'Obsidian Entertainment',
     number: '02',
     image: avowedImage,
     alt: 'Avowed key art showing a fantasy warrior and sword',
@@ -32,27 +32,29 @@ const places = [
   },
   {
     name: 'MindsEye',
-    location: 'Science fiction action adventure',
-    category: 'Build a Rocket Boy',
+    studio: 'Build a Rocket Boy',
     number: '03',
     image: mindsEyeImage,
     alt: 'MindsEye key art featuring two characters in a futuristic city',
+    creditsImage: mindsEyeCreditsImage,
+    creditsAlt: 'MindsEye credits listing Fernando Esquivel Hidalgo as a Spanish Latin American tester',
     color: '#52798e',
   },
   {
     name: 'Slime Rancher 2',
-    location: 'Life simulation adventure',
-    category: 'Monomi Park',
+    studio: 'Monomi Park',
     number: '04',
     image: slimeRancherImage,
     alt: 'Slime Rancher 2 key art with colorful slimes and its rancher',
+    creditsImage: slimeRancherCreditsImage,
+    creditsAlt: 'Slime Rancher 2 Spanish Mexico credits listing Fernando Esquivel',
     color: '#a76948',
   },
 ]
 
 const navigationItems = [
   { label: 'MY PROFESSIONAL EXPERIENCE', href: '#capabilities' },
-  { label: 'THE WORK', href: '#work' },
+  { label: 'WORK', href: '#work' },
   { label: 'ABOUT', href: '#about' },
   { label: 'CONTACT', href: '#contact' },
 ]
@@ -227,10 +229,21 @@ function App() {
               aria-label="Back to top"
               onClick={handleBrandClick}
             >
-              <svg className="brand-mark" viewBox="0 0 16 12" aria-hidden="true" shapeRendering="crispEdges">
-                <path d="M2 0h2v1h1v1h6V1h1V0h2v1h1v2h1v5h-2v2h-2V9H4v1H2V8H0V3h1V1h1z" />
-                <path className="brand-mark-eye brand-mark-eye-left" d="M3 4h2v2H3z" />
-                <path className="brand-mark-eye brand-mark-eye-right" d="M9 4h2v2H9z" />
+              <svg className="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+                <defs>
+                  <linearGradient id="vice-sun-gradient" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stopColor="#ff75c3" />
+                    <stop offset="55%" stopColor="#ff9d67" />
+                    <stop offset="100%" stopColor="#ffe17a" />
+                  </linearGradient>
+                  <clipPath id="vice-sun-clip">
+                    <circle cx="16" cy="16" r="13" />
+                  </clipPath>
+                </defs>
+                <circle cx="16" cy="16" r="13" fill="url(#vice-sun-gradient)" />
+                <g clipPath="url(#vice-sun-clip)" fill="#17102e">
+                  <path d="M2 17h28v2H2zM2 21h28v2H2zM2 25h28v2H2zM2 29h28v3H2z" />
+                </g>
               </svg>
             </a>
             <span>Fernando Esquivel H.</span>
@@ -419,7 +432,7 @@ function App() {
                     className={`place-card ${isActive ? 'is-active' : ''}${isShowingCredits ? ' is-showing-credits' : ''}`}
                     key={place.number}
                     aria-current={isActive ? 'true' : undefined}
-                    aria-label={`${place.number} of ${places.length}: ${place.name}, ${place.location}`}
+                    aria-label={`${place.number} of ${places.length}: ${place.name}, ${place.studio}`}
                     style={{ '--card-accent': place.color }}
                   >
                     <img className="place-image" src={place.image} alt={place.alt} draggable="false" />
@@ -445,12 +458,9 @@ function App() {
                     )}
                     {!place.creditsImage && <span className="credits-image-hint" aria-hidden="true" />}
                     <div className="card-shade" />
-                    <div className="card-topline" aria-hidden="true">
-                      <span className="card-category">{place.category}</span>
-                    </div>
                     <div className="card-caption" aria-hidden="true">
                       <h3>{place.name}</h3>
-                      <p>{place.location}</p>
+                      <p>{place.studio}</p>
                     </div>
                   </article>
                 )
@@ -534,40 +544,39 @@ function App() {
         <section id="contact" className="portfolio-section contact-section scroll-reveal px-6 sm:px-10">
           <h2>Get in contact with me:</h2>
           <div className="contact-methods" aria-label="Contact information">
-            <article className="contact-method">
+            <a className="contact-method" href="mailto:fernando30_96@hotmail.com">
               <svg className="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <rect x="3" y="5" width="18" height="14" rx="2" />
                 <path d="m4 7 8 6 8-6" />
               </svg>
               <div>
                 <h3>Email</h3>
-                <a href="mailto:fernando30_96@hotmail.com">fernando30_96@hotmail.com</a>
+                <span>fernando30_96@hotmail.com</span>
               </div>
-            </article>
-            <article className="contact-method">
+            </a>
+            <a className="contact-method" href="tel:+50687196676">
               <svg className="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M7 3h3l2 5-2.2 1.6a15 15 0 0 0 4.6 4.6L16 12l5 2v3c0 1.1-.9 2-2 2C10.7 19 5 13.3 5 6c0-1.7.9-3 2-3Z" />
               </svg>
               <div>
                 <h3>Phone</h3>
-                <a href="tel:+50687196676">+506 8719-6676</a>
+                <span>+506 8719-6676</span>
               </div>
-            </article>
-            <article className="contact-method">
+            </a>
+            <a
+              className="contact-method"
+              href="https://www.linkedin.com/in/fernando-esquivel-hidalgo-13b31a174/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <svg className="contact-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M5.2 3.5a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4ZM3.3 9.4h3.8v11.1H3.3V9.4Zm6.1 0H13v1.5h.1c.5-.9 1.7-1.9 3.6-1.9 3.9 0 4.6 2.5 4.6 5.7v5.8h-3.8v-5.1c0-1.2 0-2.8-1.8-2.8s-2.1 1.3-2.1 2.7v5.2H9.4V9.4Z" />
               </svg>
               <div>
                 <h3>LinkedIn</h3>
-                <a
-                  href="https://www.linkedin.com/in/fernando-esquivel-hidalgo-13b31a174/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  LinkedIn profile
-                </a>
+                <span>LinkedIn profile</span>
               </div>
-            </article>
+            </a>
           </div>
         </section>
 

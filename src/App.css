@@ -26,7 +26,7 @@
 }
 
 .brand {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Oxanium, "Arial Narrow", sans-serif;
   font-size: 24px;
   letter-spacing: -1.1px;
   color: var(--lavender);
@@ -44,32 +44,15 @@
 }
 
 .brand-mark {
-  width: 26px;
-  height: 22px;
-  flex: 0 0 26px;
-  fill: var(--cyan);
-  filter: drop-shadow(1px 1px 0 var(--pink));
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  filter: drop-shadow(0 0 4px rgb(255 79 216 / 45%));
   transition: filter 180ms ease;
 }
 
-.brand-mark-eye {
-  fill: #17102e;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
 .brand-icon:hover .brand-mark {
-  filter: drop-shadow(0 0 4px rgb(83 224 229 / 70%)) drop-shadow(1px 1px 0 var(--pink));
-}
-
-.brand-icon:hover .brand-mark-eye,
-.brand-icon:focus-visible .brand-mark-eye {
-  animation: invader-eye-look-blink 760ms steps(1, end) both;
-}
-
-.brand-icon:hover .brand-mark-eye-right,
-.brand-icon:focus-visible .brand-mark-eye-right {
-  animation-delay: 30ms;
+  filter: drop-shadow(0 0 7px rgb(255 79 216 / 75%));
 }
 
 .brand-icon:focus-visible {
@@ -128,13 +111,6 @@
   animation-delay: 70ms;
 }
 
-@keyframes invader-eye-look-blink {
-  0%, 100% { transform: translate(0, 0) scaleY(1); }
-  20% { transform: translate(1px, -1px) scaleY(1); }
-  42%, 52% { transform: translate(1px, -1px) scaleY(0.12); }
-  72% { transform: translate(-0.5px, 0) scaleY(1); }
-}
-
 @keyframes invader-jump {
   0%, 100% { transform: translateY(0) scale(1); }
   25% { transform: translateY(2px) scale(1.08, 0.88); }
@@ -156,7 +132,6 @@
 .topbar-note,
 .nav-link,
 .eyebrow,
-.card-category,
 .page-footer {
   font-size: 9px;
   font-weight: 600;
@@ -388,7 +363,7 @@
 .contact-section h2 {
   margin: 0;
   color: var(--lavender);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Oxanium, "Arial Narrow", sans-serif;
   font-size: clamp(30px, 4.2vw, 48px);
   font-weight: 400;
   letter-spacing: -0.055em;
@@ -531,14 +506,12 @@
   outline-offset: -5px;
 }
 
-.card-topline,
 .card-caption {
   z-index: 1;
   pointer-events: none;
   transition: opacity 180ms ease, visibility 180ms ease;
 }
 
-.is-showing-credits .card-topline,
 .is-showing-credits .card-caption {
   opacity: 0;
   visibility: hidden;
@@ -557,28 +530,6 @@
   opacity: 0;
 }
 
-.card-topline {
-  position: absolute;
-  top: clamp(17px, 3vw, 29px);
-  right: clamp(18px, 3vw, 31px);
-  left: clamp(18px, 3vw, 31px);
-  display: flex;
-  justify-content: space-between;
-}
-
-.card-category {
-  font-size: 8px;
-  letter-spacing: 1.5px;
-}
-
-.card-category {
-  padding: 8px 10px 7px;
-  border: 1px solid rgb(255 255 255 / 55%);
-  border-radius: 99px;
-  background: rgb(20 12 41 / 42%);
-  backdrop-filter: blur(14px) saturate(140%);
-}
-
 .card-caption {
   position: absolute;
   right: clamp(20px, 4vw, 46px);
@@ -588,13 +539,16 @@
 
 .card-caption p {
   margin: 9px 0 0;
-  font-size: clamp(10px, 1vw, 12px);
-  letter-spacing: 0.5px;
+  color: #ffd1ed;
+  font-size: clamp(9px, 0.9vw, 11px);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .card-caption h3 {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Oxanium, "Arial Narrow", sans-serif;
   font-size: clamp(32px, 5vw, 60px);
   font-weight: 400;
   letter-spacing: -0.055em;
@@ -675,7 +629,7 @@
 .skills-panel h3 {
   margin: 0;
   color: var(--lavender);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Oxanium, "Arial Narrow", sans-serif;
   font-size: 26px;
   font-weight: 400;
 }
@@ -854,7 +808,7 @@
 
 .capability-title {
   color: var(--lavender);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Oxanium, "Arial Narrow", sans-serif;
   font-size: 21px;
   font-weight: 400;
   letter-spacing: -0.03em;
@@ -895,7 +849,7 @@
   grid-column: 1 / -1;
   margin: 0;
   color: var(--lavender);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Oxanium, "Arial Narrow", sans-serif;
   font-size: clamp(34px, 5vw, 58px);
   font-weight: 400;
   letter-spacing: -0.055em;
@@ -934,7 +888,24 @@
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 8%), 0 12px 30px rgb(0 0 0 / 14%);
   backdrop-filter: blur(16px) saturate(130%);
   -webkit-backdrop-filter: blur(16px) saturate(130%);
+  color: inherit;
+  text-decoration: none;
   text-align: left;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.contact-method:hover {
+  transform: translateY(-2px);
+  border-color: rgb(83 224 229 / 48%);
+  background: linear-gradient(145deg, rgb(155 93 229 / 18%), rgb(83 224 229 / 9%));
+}
+
+.contact-method:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
 }
 
 .contact-icon {
@@ -967,21 +938,13 @@
   line-height: 1.6;
 }
 
-.contact-method a {
+.contact-method span {
   display: inline-block;
   max-width: 100%;
   overflow-wrap: anywhere;
   color: var(--muted-lavender);
   font-size: 11px;
   line-height: 1.6;
-  text-decoration-color: rgb(201 173 255 / 35%);
-  text-underline-offset: 3px;
-  transition: color 180ms ease, text-decoration-color 180ms ease;
-}
-
-.contact-method a:hover {
-  color: var(--cyan);
-  text-decoration-color: currentColor;
 }
 
 @media (min-width: 641px) and (max-width: 960px) {
@@ -1256,8 +1219,6 @@
     transition: none;
   }
 
-  .brand-icon:hover .brand-mark-eye,
-  .brand-icon:focus-visible .brand-mark-eye,
   .brand-icon.is-clicked {
     animation: none;
   }
