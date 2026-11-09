@@ -1134,11 +1134,9 @@
     box-shadow:
       inset 0 1px 0 rgb(255 225 122 / 12%),
       0 0 12px rgb(255 157 103 / 8%);
-    opacity: 0;
+    opacity: 1;
     transform: translateY(-4px);
-    transition:
-      opacity 180ms ease,
-      transform 180ms ease;
+    transition: transform 180ms ease;
   }
 
   .contact-submenu.is-open {
@@ -1148,7 +1146,6 @@
   }
 
   .contact-submenu.is-open .contact-submenu-inner {
-    opacity: 1;
     transform: translateY(0);
   }
 
