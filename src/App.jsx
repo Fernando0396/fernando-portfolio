@@ -54,9 +54,9 @@ const places = [
 ]
 
 const navigationItems = [
-  { label: 'MY PROFESSIONAL EXPERIENCE', href: '#capabilities' },
+  { label: 'EXPERIENCE', href: '#capabilities' },
   { label: 'WORK', href: '#work' },
-  { label: 'ABOUT', href: '#about' },
+  { label: 'SUMMARY', href: '#about' },
   { label: 'CONTACT', href: '#contact' },
 ]
 
@@ -333,30 +333,32 @@ function App() {
 
         <section id="capabilities" className="portfolio-section capabilities-section px-6 sm:px-10">
           <div className="section-heading">
-            <h1>My professional experience</h1>
+            <h1>Professional Experience</h1>
           </div>
           <div className="capability-list">
             {[
               {
-                title: 'Amazon Alexa AI services',
+                title: 'Amazon Alexa AI Services | Data Annotation and Content Auditing',
                 dates: '2019-2022 & 2025-Present',
                 bulletPoints: [
-                  'AI Data Annotation focused on Transcriptions to train AI Language Models by carefully categorizing critical data utilizing internal Guidelines, following required safety and privacy standards.',
-                  'AI Content Auditor focused on Quality checks for AI responses and user-asked questions to teach AI Language Modules how to asses for better answers, better understand user inputs and ensure internal standards are met.',
+                  'Annotated transcription data for AI and language-model training, following project guidelines and safety and privacy requirements.',
+                  'Audited AI-generated responses and user queries for quality, helping improve response relevance and ensure internal standards were met.',
                 ],
               },
               {
-                title: 'Xbox testing for Certification',
+                title: 'Xbox Certification Testing',
                 dates: '2023-2024',
                 bulletPoints: [
-                  'Videogame QA manual testing utilizing diverse reporting tools heavily influenced by team communication, detailed bug writing and auditing, attention to detail and time management. Wide knowledge of the videogame industry as well.',
+                  'Performed manual video game testing for Xbox certification, identifying and documenting defects with project reporting tools.',
+                  'Reviewed and audited bug reports, communicated findings with the team, and managed testing priorities with attention to detail.',
                 ],
               },
               {
-                title: 'Localization software testing',
+                title: 'Video Game Localization Quality Assurance',
                 dates: '2024-2025',
                 bulletPoints: [
-                  'Videogame Localization QA utilizing diverse reporting tools heavily influenced by team communication, detailed bug writing and auditing, attention to detail and time management. Wide knowledge of the videogame industry as well.',
+                  'Performed localization quality assurance (LQA) for video games, testing English-to-Latin American Spanish translations.',
+                  'Documented and audited localization defects with project reporting tools, collaborating with the team and managing testing priorities.',
                 ],
               },
             ].map((experience, index) => {
@@ -397,7 +399,7 @@ function App() {
         <section
           id="work"
           className="carousel-section portfolio-section scroll-reveal"
-          aria-label="Localization QA - Lionbridge"
+          aria-label="Video game localization quality assurance credits"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           onFocus={() => setIsPaused(true)}
@@ -407,10 +409,10 @@ function App() {
         >
           <div className="section-heading px-6 sm:px-10">
             <div>
-              <h2>Localization QA - Lionbridge</h2>
+              <h2>Video Game Localization QA</h2>
             </div>
             <p className="section-description">
-              A selection of some videogames I'm credited for my work as LQA for English to Latin American Spanish translations.
+              Selected video game credits for localization quality assurance (LQA) on English-to-Latin American Spanish translations.
             </p>
           </div>
           <div
@@ -424,7 +426,7 @@ function App() {
             onKeyDown={handleKeyDown}
             role="region"
             aria-roledescription="carousel"
-            aria-label="Explore four localization QA credits"
+            aria-label="Explore four video game localization QA credits"
             tabIndex={0}
           >
             <div className="carousel-track">
@@ -491,16 +493,16 @@ function App() {
           </div>
         </section>
 
-        <section id="about" className="portfolio-section about-section px-6 sm:px-10" aria-label="About">
-          <h2 className="about-heading">About me</h2>
+        <section id="about" className="portfolio-section about-section px-6 sm:px-10" aria-label="Professional summary and skills">
+          <h2 className="about-heading">Professional Summary</h2>
           <div className="about-copy scroll-reveal">
             <p>
-              I've always been someone who notices the little details: the references in
-              movies and games, the nods and homages to other great artists and media,
-              and the care put into software that makes users feel an emotional attachment.
-              I notice the details that prove a developer cares. Any misspelled word, any
-              process in need of an upgrade, any development that needs a keen eye. That's
-              where I shine.
+              Fernando Esquivel Hidalgo is a quality assurance professional with experience in video game testing,
+              localization quality assurance (LQA), Xbox certification, and AI data services. His work includes
+              testing English-to-Latin American Spanish game localization, documenting and auditing defects,
+              reviewing AI-generated responses, and annotating transcription data for language-model training.
+              Strengths include attention to detail, clear bug reporting, quality auditing, time management, and
+              following project guidelines and safety and privacy requirements.
             </p>
             <div className="skills-panel">
               <h3>Skills</h3>
@@ -545,8 +547,8 @@ function App() {
           />
         </section>
 
-        <section id="contact" className="portfolio-section contact-section scroll-reveal px-6 sm:px-10">
-          <h2>Get in contact with me:</h2>
+        <section id="contact" className="portfolio-section contact-section scroll-reveal px-6 sm:px-10" aria-label="Contact information">
+          <h2>Contact</h2>
           <div className="contact-methods" aria-label="Contact information">
             <a className="contact-method" href="mailto:fernando30_96@hotmail.com">
               <svg className="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
