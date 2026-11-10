@@ -507,41 +507,41 @@ function App() {
               Strengths include attention to detail, clear bug reporting, quality auditing, time management, and
               following project guidelines and safety and privacy requirements.
             </p>
-            <div className="skills-panel">
-              <h3>Skills</h3>
-              <ul className="skills-list">
-                {skills.map((skill) => {
-                  const levelIndex = skillLevels.indexOf(skill.level)
-                  return (
-                    <li className="skill-item" key={skill.name}>
-                      <div className="skill-label">
-                        <span>{skill.name}</span>
-                      </div>
-                      <div
-                        className="skill-meter"
-                        role="meter"
-                        aria-label={`${skill.name} skill level`}
-                        aria-valuemin={1}
-                        aria-valuemax={skillLevels.length}
-                        aria-valuenow={levelIndex + 1}
-                        aria-valuetext={skill.level}
-                      >
-                        {skillLevels.map((level, index) => (
-                          <span
-                            className={`skill-meter-segment${index <= levelIndex ? ' is-filled' : ''}`}
-                            key={level}
-                            aria-hidden="true"
-                          />
-                        ))}
-                      </div>
-                      <div className="skill-meter-labels" aria-hidden="true">
-                        {skillLevels.map((level) => <span key={level}>{level}</span>)}
-                      </div>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
+          </div>
+          <div className="skills-panel">
+            <h3>Skills</h3>
+            <ul className="skills-list">
+              {skills.map((skill) => {
+                const levelIndex = skillLevels.indexOf(skill.level)
+                return (
+                  <li className="skill-item" key={skill.name}>
+                    <div className="skill-label">
+                      <span>{skill.name}</span>
+                    </div>
+                    <div
+                      className="skill-meter"
+                      role="meter"
+                      aria-label={`${skill.name} skill level`}
+                      aria-valuemin={1}
+                      aria-valuemax={skillLevels.length}
+                      aria-valuenow={levelIndex + 1}
+                      aria-valuetext={skill.level}
+                    >
+                      {skillLevels.map((level, index) => (
+                        <span
+                          className={`skill-meter-segment${index <= levelIndex ? ' is-filled' : ''}`}
+                          key={level}
+                          aria-hidden="true"
+                        />
+                      ))}
+                    </div>
+                    <div className="skill-meter-labels" aria-hidden="true">
+                      {skillLevels.map((level) => <span key={level}>{level}</span>)}
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
           <img
             className="about-photo scroll-reveal"
