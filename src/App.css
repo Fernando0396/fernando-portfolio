@@ -158,13 +158,12 @@
 
 .header-nav {
   position: absolute;
-  right: 40px;
-  left: auto;
+  left: calc(50% + 32px);
   display: flex;
-  width: auto;
+  width: min(42%, 420px);
   align-items: center;
-  justify-content: flex-start;
-  gap: clamp(12px, 1.8vw, 22px);
+  justify-content: space-between;
+  transform: translateX(-50%);
 }
 
 .nav-item {
@@ -985,7 +984,8 @@
 @media (min-width: 641px) and (max-width: 960px) {
   .header-nav {
     right: 32px;
-    width: auto;
+    left: auto;
+    width: min(44%, 340px);
     transform: none;
   }
 }

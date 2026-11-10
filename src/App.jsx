@@ -298,18 +298,6 @@ function App() {
                       </a>
                       <a
                         className="contact-submenu-link"
-                        href="https://www.linkedin.com/in/fernando-esquivel-hidalgo-13b31a174/"
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={() => {
-                          setIsMenuOpen(false)
-                          setIsContactMenuOpen(false)
-                        }}
-                      >
-                        LinkedIn
-                      </a>
-                      <a
-                        className="contact-submenu-link"
                         href={`${import.meta.env.BASE_URL}my-cv.pdf`}
                         download="Fernando-Esquivel-CV.pdf"
                         onClick={(event) => {
