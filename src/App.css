@@ -161,9 +161,10 @@
   right: 40px;
   left: auto;
   display: flex;
-  width: min(58%, 650px);
+  width: auto;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: clamp(12px, 1.8vw, 22px);
 }
 
 .nav-item {
@@ -984,7 +985,7 @@
 @media (min-width: 641px) and (max-width: 960px) {
   .header-nav {
     right: 32px;
-    width: min(48%, 420px);
+    width: auto;
     transform: none;
   }
 }
