@@ -20,7 +20,7 @@
   height: 82px;
   flex: 0 0 auto;
   transform: translateX(-50%);
-  border-bottom: 1px solid rgb(233 217 255 / 24%);
+  border-bottom: 1px solid transparent;
   background:
     linear-gradient(120deg, rgb(255 255 255 / 9%), rgb(155 93 229 / 5%) 45%, transparent 78%),
     rgb(19 12 40 / 52%);
