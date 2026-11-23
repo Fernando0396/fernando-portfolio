@@ -183,6 +183,12 @@ function App() {
     })
   }
 
+  const handleResumeDownload = (event) => {
+    if (!window.confirm('Would you like to download my PDF resume?')) {
+      event.preventDefault()
+    }
+  }
+
   const moveTo = (direction) => {
     setShowingCreditsFor(null)
     setActiveIndex((index) => (index + direction + places.length) % places.length)
@@ -298,37 +304,52 @@ function App() {
               </a>
             ))}
           </nav>
-          <button
-            className="theme-toggle"
-            type="button"
-            aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
-            title={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
-            onClick={() => setThemeOverride(!isDarkMode)}
-          >
-            {isDarkMode ? (
+          <div className="header-actions">
+            <button
+              className="theme-toggle"
+              type="button"
+              aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
+              title={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
+              onClick={() => setThemeOverride(!isDarkMode)}
+            >
+              {isDarkMode ? (
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z" />
+                  <path d="M16.5 3.5v4m-2-2h4" />
+                </svg>
+              )}
+            </button>
+            <a
+              className="resume-nav-link"
+              href={`${import.meta.env.BASE_URL}my-cv.pdf`}
+              download="Fernando-Esquivel-Resume.pdf"
+              aria-label="Download Resume PDF"
+              title="Resume PDF"
+              onClick={handleResumeDownload}
+            >
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+                <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3" />
               </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z" />
-                <path d="M16.5 3.5v4m-2-2h4" />
-              </svg>
-            )}
-          </button>
-          <button
-            className={`menu-toggle ${isMenuOpen ? 'is-open' : ''}`}
-            type="button"
-            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={isMenuOpen}
-            aria-controls="main-navigation"
-            onClick={() => setIsMenuOpen((open) => !open)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+              <span>Resume PDF</span>
+            </a>
+            <button
+              className={`menu-toggle ${isMenuOpen ? 'is-open' : ''}`}
+              type="button"
+              aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMenuOpen}
+              aria-controls="main-navigation"
+              onClick={() => setIsMenuOpen((open) => !open)}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
         </header>
 
         <section id="about" className="hero-section scroll-reveal px-6 sm:px-10" aria-label="Professional summary">
@@ -346,11 +367,7 @@ function App() {
             className="resume-button"
             href={`${import.meta.env.BASE_URL}my-cv.pdf`}
             download="Fernando-Esquivel-Resume.pdf"
-            onClick={(event) => {
-              if (!window.confirm('Would you like to download my PDF resume?')) {
-                event.preventDefault()
-              }
-            }}
+            onClick={handleResumeDownload}
           >
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3" />
@@ -679,6 +696,20 @@ function App() {
               <div>
                 <h3>LinkedIn</h3>
                 <span>LinkedIn profile</span>
+              </div>
+            </a>
+            <a
+              className="contact-method"
+              href={`${import.meta.env.BASE_URL}my-cv.pdf`}
+              download="Fernando-Esquivel-Resume.pdf"
+              onClick={handleResumeDownload}
+            >
+              <svg className="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 3h8l4 4v14H6zM14 3v5h5M12 11v6m0 0 2-2m-2 2-2-2" />
+              </svg>
+              <div>
+                <h3>Resume PDF</h3>
+                <span>Download my resume</span>
               </div>
             </a>
           </div>
