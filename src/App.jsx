@@ -90,7 +90,6 @@ function App() {
   const [showingCreditsFor, setShowingCreditsFor] = useState(null)
   const [isPaused, setIsPaused] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isContactMenuOpen, setIsContactMenuOpen] = useState(false)
   const [expandedExperiences, setExpandedExperiences] = useState([true, true, true])
   const [isSkillsExpanded, setIsSkillsExpanded] = useState(true)
   const [areLanguagesExpanded, setAreLanguagesExpanded] = useState(true)
@@ -153,18 +152,17 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (!isMenuOpen && !isContactMenuOpen) return undefined
+    if (!isMenuOpen) return undefined
 
     const closeOnOutsidePointer = (event) => {
       if (!headerRef.current?.contains(event.target)) {
         setIsMenuOpen(false)
-        setIsContactMenuOpen(false)
       }
     }
 
     document.addEventListener('pointerdown', closeOnOutsidePointer)
     return () => document.removeEventListener('pointerdown', closeOnOutsidePointer)
-  }, [isContactMenuOpen, isMenuOpen])
+  }, [isMenuOpen])
 
   useEffect(
     () => () => {
@@ -261,7 +259,7 @@ function App() {
           <div className="brand flex items-center gap-2.5">
             <a
               className={`brand-icon${isBrandClicked ? ' is-clicked' : ''}`}
-              href="#capabilities"
+              href="#about"
               aria-label="Back to top"
               onClick={handleBrandClick}
             >
@@ -290,63 +288,14 @@ function App() {
             aria-label="Main navigation"
           >
             {navigationItems.map((item) => (
-              <div
-                className={`nav-item${item.label === 'CONTACT' ? ' nav-item-contact' : ''}`}
+              <a
+                className="nav-link"
+                href={item.href}
                 key={item.label}
+                onClick={() => setIsMenuOpen(false)}
               >
-                {item.label === 'CONTACT' ? (
-                  <button
-                    className="nav-link nav-contact-toggle"
-                    type="button"
-                    aria-expanded={isContactMenuOpen}
-                    aria-controls="contact-submenu"
-                    onClick={() => setIsContactMenuOpen((open) => !open)}
-                  >
-                    {item.label}
-                  </button>
-                ) : (
-                  <a
-                    className="nav-link"
-                    href={item.href}
-                    onClick={() => {
-                      setIsMenuOpen(false)
-                      setIsContactMenuOpen(false)
-                    }}
-                  >
-                    {item.label}
-                  </a>
-                )}
-                {item.label === 'CONTACT' && (
-                  <div
-                    className={`contact-submenu${isContactMenuOpen ? ' is-open' : ''}`}
-                    id="contact-submenu"
-                    aria-label="Contact options"
-                    aria-hidden={!isContactMenuOpen}
-                    inert={!isContactMenuOpen}
-                  >
-                    <div className="contact-submenu-inner">
-                      <a className="contact-submenu-link" href="tel:+50687196676">
-                        +506 8719-6676
-                      </a>
-                      <a className="contact-submenu-link" href="mailto:fernando30_96@hotmail.com">
-                        fernando30_96@hotmail.com
-                      </a>
-                      <a
-                        className="contact-submenu-link"
-                        href={`${import.meta.env.BASE_URL}my-cv.pdf`}
-                        download="Fernando-Esquivel-CV.pdf"
-                        onClick={(event) => {
-                          if (!window.confirm('Would you like to download my CV?')) {
-                            event.preventDefault()
-                          }
-                        }}
-                      >
-                        My CV
-                      </a>
-                    </div>
-                  </div>
-                )}
-              </div>
+                {item.label}
+              </a>
             ))}
           </nav>
           <button
@@ -374,10 +323,7 @@ function App() {
             aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={isMenuOpen}
             aria-controls="main-navigation"
-            onClick={() => {
-              setIsMenuOpen((open) => !open)
-              setIsContactMenuOpen(false)
-            }}
+            onClick={() => setIsMenuOpen((open) => !open)}
           >
             <span />
             <span />
@@ -385,69 +331,32 @@ function App() {
           </button>
         </header>
 
-        <section id="capabilities" className="portfolio-section capabilities-section px-6 sm:px-10">
-          <div className="section-heading">
-            <h1>Professional Experience</h1>
-          </div>
-          <div className="capability-list">
-            {[
-              {
-                title: 'Amazon Alexa AI Services | Data Annotation and Content Auditing',
-                dates: '2019-2022 & 2025-Present',
-                bulletPoints: [
-                  'Annotated transcription data for AI and language-model training, following project guidelines and safety and privacy requirements.',
-                  'Audited AI-generated responses and user queries for quality, helping improve response relevance and ensure internal standards were met.',
-                ],
-              },
-              {
-                title: 'Xbox Certification Testing',
-                dates: '2023-2024',
-                bulletPoints: [
-                  'Performed manual video game testing for Xbox certification, identifying and documenting defects with project reporting tools.',
-                  'Reviewed and audited bug reports, communicated findings with the team, and managed testing priorities with attention to detail.',
-                ],
-              },
-              {
-                title: 'Video Game Localization Quality Assurance',
-                dates: '2024-2025',
-                bulletPoints: [
-                  'Performed localization quality assurance (LQA) for video games, testing English-to-Latin American Spanish translations.',
-                  'Documented and audited localization defects with project reporting tools, collaborating with the team and managing testing priorities.',
-                ],
-              },
-            ].map((experience, index) => {
-              const isExpanded = expandedExperiences[index]
-              const contentId = `capability-content-${index}`
-              return (
-                <article className="capability-card scroll-reveal" key={experience.title}>
-                  <button
-                    className="capability-toggle"
-                    type="button"
-                    aria-expanded={isExpanded}
-                    aria-controls={contentId}
-                    onClick={() => toggleExperience(index)}
-                  >
-                    <span className="capability-title" role="heading" aria-level="2">{experience.title}</span>
-                    <span className="capability-dates">{experience.dates}</span>
-                    <span className={`capability-chevron${isExpanded ? ' is-open' : ''}`} aria-hidden="true" />
-                  </button>
-                  <div
-                    className={`capability-content${isExpanded ? ' is-open' : ''}`}
-                    id={contentId}
-                    aria-hidden={!isExpanded}
-                  >
-                    <div className="capability-content-inner">
-                      <ul className="capability-bullets">
-                        {experience.bulletPoints.map((bullet, bulletIndex) => (
-                          <li key={bulletIndex}>{bullet}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </article>
-              )
-            })}
-          </div>
+        <section id="about" className="hero-section scroll-reveal px-6 sm:px-10" aria-label="Professional summary">
+          <p className="hero-eyebrow">QUALITY ASSURANCE · LOCALIZATION QA · AI DATA QUALITY</p>
+          <h1>Quality Assurance &amp; Localization QA</h1>
+          <p className="hero-summary">
+            Fernando Esquivel Hidalgo is a quality assurance professional with experience in video game testing,
+            localization quality assurance (LQA), Xbox certification, and AI data services. His work includes
+            testing English-to-Latin American Spanish game localization, documenting and auditing defects,
+            reviewing AI-generated responses, and annotating transcription data for language-model training.
+            Strengths include attention to detail, clear bug reporting, quality auditing, time management, and
+            following project guidelines and safety and privacy requirements.
+          </p>
+          <a
+            className="resume-button"
+            href={`${import.meta.env.BASE_URL}my-cv.pdf`}
+            download="Fernando-Esquivel-Resume.pdf"
+            onClick={(event) => {
+              if (!window.confirm('Would you like to download my PDF resume?')) {
+                event.preventDefault()
+              }
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3" />
+            </svg>
+            PDF Resume
+          </a>
         </section>
 
         <section
@@ -463,7 +372,7 @@ function App() {
         >
           <div className="section-heading px-6 sm:px-10">
             <div>
-              <h2>Video Game Localization QA</h2>
+              <h2>Selected Work</h2>
             </div>
             <p className="section-description">
               Selected video game credits for localization quality assurance (LQA) on English-to-Latin American Spanish translations.
@@ -547,18 +456,73 @@ function App() {
           </div>
         </section>
 
-        <section id="about" className="portfolio-section about-section px-6 sm:px-10" aria-label="Professional summary and skills">
-          <h2 className="about-heading">Professional Summary</h2>
-          <div className="about-copy scroll-reveal">
-            <p>
-              Fernando Esquivel Hidalgo is a quality assurance professional with experience in video game testing,
-              localization quality assurance (LQA), Xbox certification, and AI data services. His work includes
-              testing English-to-Latin American Spanish game localization, documenting and auditing defects,
-              reviewing AI-generated responses, and annotating transcription data for language-model training.
-              Strengths include attention to detail, clear bug reporting, quality auditing, time management, and
-              following project guidelines and safety and privacy requirements.
-            </p>
+        <section id="capabilities" className="portfolio-section capabilities-section px-6 sm:px-10">
+          <div className="section-heading">
+            <h2>Experience</h2>
           </div>
+          <div className="capability-list">
+            {[
+              {
+                title: 'Amazon Alexa AI Services | Data Annotation and Content Auditing',
+                dates: '2019-2022 & 2025-Present',
+                bulletPoints: [
+                  'Annotated transcription data for AI and language-model training, following project guidelines and safety and privacy requirements.',
+                  'Audited AI-generated responses and user queries for quality, helping improve response relevance and ensure internal standards were met.',
+                ],
+              },
+              {
+                title: 'Xbox Certification Testing',
+                dates: '2023-2024',
+                bulletPoints: [
+                  'Performed manual video game testing for Xbox certification, identifying and documenting defects with project reporting tools.',
+                  'Reviewed and audited bug reports, communicated findings with the team, and managed testing priorities with attention to detail.',
+                ],
+              },
+              {
+                title: 'Video Game Localization Quality Assurance',
+                dates: '2024-2025',
+                bulletPoints: [
+                  'Performed localization quality assurance (LQA) for video games, testing English-to-Latin American Spanish translations.',
+                  'Documented and audited localization defects with project reporting tools, collaborating with the team and managing testing priorities.',
+                ],
+              },
+            ].map((experience, index) => {
+              const isExpanded = expandedExperiences[index]
+              const contentId = `capability-content-${index}`
+              return (
+                <article className="capability-card scroll-reveal" key={experience.title}>
+                  <button
+                    className="capability-toggle"
+                    type="button"
+                    aria-expanded={isExpanded}
+                    aria-controls={contentId}
+                    onClick={() => toggleExperience(index)}
+                  >
+                    <span className="capability-title" role="heading" aria-level="2">{experience.title}</span>
+                    <span className="capability-dates">{experience.dates}</span>
+                    <span className={`capability-chevron${isExpanded ? ' is-open' : ''}`} aria-hidden="true" />
+                  </button>
+                  <div
+                    className={`capability-content${isExpanded ? ' is-open' : ''}`}
+                    id={contentId}
+                    aria-hidden={!isExpanded}
+                  >
+                    <div className="capability-content-inner">
+                      <ul className="capability-bullets">
+                        {experience.bulletPoints.map((bullet, bulletIndex) => (
+                          <li key={bulletIndex}>{bullet}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </section>
+
+        <section id="skills" className="portfolio-section skills-section px-6 sm:px-10" aria-label="Skills and languages">
+          <h2 className="about-heading">Skills &amp; Languages</h2>
           <div className="skills-panel">
             <h3 className="proficiency-heading">
               <button
@@ -667,8 +631,22 @@ function App() {
           </div>
         </section>
 
+        <section id="credentials" className="portfolio-section credentials-section px-6 sm:px-10" aria-label="Education and credentials">
+          <div className="section-heading">
+            <h2>Education &amp; Credentials</h2>
+          </div>
+          <article className="mysql-spotlight-card">
+            <div className="mysql-spotlight-heading">
+              <span className="mysql-spotlight-kicker">DATABASE SKILL</span>
+              <span className="mysql-level">ADVANCED</span>
+            </div>
+            <h3>MySQL</h3>
+            <p>Udemy Certificate · 2026</p>
+          </article>
+        </section>
+
         <section id="contact" className="portfolio-section contact-section scroll-reveal px-6 sm:px-10" aria-label="Contact information">
-          <h2>Contact</h2>
+          <h2>Let&apos;s Connect</h2>
           <div className="contact-methods" aria-label="Contact information">
             <a className="contact-method" href="mailto:fernando30_96@hotmail.com">
               <svg className="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
