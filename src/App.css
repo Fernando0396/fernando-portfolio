@@ -408,7 +408,7 @@
   margin: 0;
   color: var(--lavender);
   font-family: Oxanium, "Arial Narrow", sans-serif;
-  font-size: clamp(30px, 4.2vw, 48px);
+  font-size: clamp(26px, 3.5vw, 40px);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 1.05;
@@ -593,7 +593,7 @@
 .card-caption h3 {
   margin: 0;
   font-family: Oxanium, "Arial Narrow", sans-serif;
-  font-size: clamp(32px, 5vw, 60px);
+  font-size: clamp(27px, 4.2vw, 50px);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 1;
@@ -652,7 +652,7 @@
   margin: 0;
   color: var(--lavender);
   font-family: Oxanium, "Arial Narrow", sans-serif;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 400;
 }
 
@@ -768,7 +768,7 @@
 
 .languages-heading {
   margin: 28px 0 0;
-  font-size: 19px;
+  font-size: 17px;
 }
 
 .capabilities-section {
@@ -784,7 +784,7 @@
 }
 
 .capabilities-section .section-heading h2 {
-  font-size: clamp(34px, 5vw, 58px);
+  font-size: clamp(28px, 4vw, 46px);
 }
 
 .capability-list {
@@ -875,7 +875,7 @@
 .capability-title {
   color: var(--lavender);
   font-family: Oxanium, "Arial Narrow", sans-serif;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 400;
   letter-spacing: -0.03em;
 }
@@ -923,7 +923,7 @@
   margin: 0;
   color: var(--lavender);
   font-family: Oxanium, "Arial Narrow", sans-serif;
-  font-size: clamp(34px, 5vw, 58px);
+  font-size: clamp(28px, 4.2vw, 46px);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 1.05;
@@ -950,7 +950,7 @@
   margin: 18px 0 20px;
   color: var(--lavender);
   font-family: Oxanium, "Arial Narrow", sans-serif;
-  font-size: clamp(42px, 7vw, 82px);
+  font-size: clamp(34px, 5.6vw, 66px);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 1.04;
@@ -1006,12 +1006,11 @@
 .mysql-spotlight-card {
   width: min(100%, 520px);
   padding: clamp(22px, 4vw, 34px);
-  border: 1px solid var(--glass-border);
   border-radius: 18px;
   background:
     linear-gradient(135deg, rgb(255 157 103 / 8%), rgb(155 93 229 / 8%)),
     rgb(20 13 43 / 55%);
-  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 16px 42px rgb(0 0 0 / 15%);
+  box-shadow: 0 16px 42px rgb(0 0 0 / 15%);
 }
 
 .mysql-spotlight-heading {
@@ -1022,9 +1021,7 @@
 }
 
 .mysql-level {
-  padding: 6px 9px;
-  border: 1px solid rgb(255 225 122 / 35%);
-  border-radius: 999px;
+  padding: 0;
   color: var(--sunset-gold);
   font-size: 9px;
   letter-spacing: 0.1em;
@@ -1034,14 +1031,23 @@
   margin: 26px 0 6px;
   color: var(--lavender);
   font-family: Oxanium, "Arial Narrow", sans-serif;
-  font-size: clamp(30px, 5vw, 42px);
+  font-size: clamp(26px, 4vw, 34px);
   font-weight: 400;
 }
 
-.mysql-spotlight-card p {
+.mysql-course-link {
+  display: inline-block;
   margin: 0;
   color: var(--muted-lavender);
-  font-size: 12px;
+  font-size: clamp(12px, 1.5vw, 14px);
+  line-height: 1.7;
+  text-decoration-color: var(--sunset-orange);
+  text-underline-offset: 4px;
+}
+
+.mysql-course-link:hover,
+.mysql-course-link:focus-visible {
+  color: var(--sunset-orange);
 }
 
 .contact-section {
@@ -1053,7 +1059,7 @@
 }
 
 .contact-section h2 {
-  font-size: clamp(40px, 6vw, 68px);
+  font-size: clamp(34px, 5vw, 54px);
 }
 
 .contact-methods {
@@ -1391,7 +1397,7 @@
   }
 
   .card-caption h3 {
-    font-size: clamp(34px, 9vw, 47px);
+    font-size: clamp(29px, 8vw, 40px);
   }
 
   .carousel-controls {
@@ -1543,9 +1549,9 @@ main[data-theme="light"] .skill-meter-segment {
 }
 
 main[data-theme="light"] .skill-meter-segment.is-filled {
-  border-color: #963f54;
-  background: linear-gradient(90deg, #b52376, #b34c30 58%, #80510e);
-  box-shadow: 0 0 7px rgb(179 76 48 / 26%);
+  border-color: #b65b7d;
+  background: linear-gradient(90deg, #ca5e95, #d27656 58%, #b88637);
+  box-shadow: 0 0 7px rgb(194 103 85 / 24%);
 }
 
 main[data-theme="light"] .capability-dates,

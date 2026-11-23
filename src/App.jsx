@@ -654,11 +654,18 @@ function App() {
           </div>
           <article className="mysql-spotlight-card">
             <div className="mysql-spotlight-heading">
-              <span className="mysql-spotlight-kicker">DATABASE SKILL</span>
-              <span className="mysql-level">ADVANCED</span>
+              <span className="mysql-spotlight-kicker">Udemy</span>
+              <span className="mysql-level">2026</span>
             </div>
             <h3>MySQL</h3>
-            <p>Udemy Certificate · 2026</p>
+            <a
+              className="mysql-course-link"
+              href="https://www.udemy.com/certificate/UC-c55da5dd-e721-4959-a05a-278d94cdb6eb/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              The Ultimate MySQL Bootcamp: Go from SQL Beginner to Expert
+            </a>
           </article>
         </section>
 
