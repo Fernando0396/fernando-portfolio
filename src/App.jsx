@@ -3,7 +3,6 @@ import avowedImage from './assets/avowed.jpg'
 import avowedCreditsImage from './assets/avowed-credits.jpg'
 import bloomAndRageImage from './assets/bloom-and-rage.png'
 import bloomAndRageCreditsImage from './assets/bloom-and-rage-credits.jpg'
-import fernandoAboutImage from './assets/fernando-about.jpg'
 import mindsEyeCreditsImage from './assets/mindseye-credits.jpg'
 import mindsEyeImage from './assets/mindseye.jpg'
 import slimeRancherCreditsImage from './assets/slime-rancher-2-credits.jpg'
@@ -72,7 +71,19 @@ const skills = [
   { name: 'JavaScript', level: 'Beginner' },
 ]
 
+const languageLevels = ['Basic', 'Intermediate', 'Advanced', 'Native']
+
+const languages = [
+  { name: 'English', level: 'C1+', levelIndex: 2 },
+  { name: 'Spanish', level: 'Native', levelIndex: 3 },
+  { name: 'Italian', level: 'Basic', levelIndex: 0 },
+]
+
 function App() {
+  const [systemPrefersDark, setSystemPrefersDark] = useState(
+    () => window.matchMedia('(prefers-color-scheme: dark)').matches,
+  )
+  const [themeOverride, setThemeOverride] = useState(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [dragOffset, setDragOffset] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
@@ -86,6 +97,22 @@ function App() {
   const carouselRef = useRef(null)
   const headerRef = useRef(null)
   const brandAnimationTimer = useRef(null)
+  const isDarkMode = themeOverride ?? systemPrefersDark
+
+  useEffect(() => {
+    const colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
+    const updateSystemPreference = (event) => setSystemPrefersDark(event.matches)
+
+    colorScheme.addEventListener('change', updateSystemPreference)
+    return () => colorScheme.removeEventListener('change', updateSystemPreference)
+  }, [])
+
+  useEffect(() => {
+    document.querySelector('meta[name="theme-color"]')?.setAttribute(
+      'content',
+      isDarkMode ? '#100a24' : '#fff8f1',
+    )
+  }, [isDarkMode])
 
   useEffect(() => {
     if (isPaused || isDragging) return undefined
@@ -223,7 +250,10 @@ function App() {
 
   return (
     <>
-      <main className="min-h-screen overflow-hidden bg-[#100a24] text-[#f9efff]">
+      <main
+        className="min-h-screen overflow-hidden"
+        data-theme={isDarkMode ? 'dark' : 'light'}
+      >
       <div className="site-shell mx-auto flex min-h-screen max-w-[1126px] flex-col">
         <header ref={headerRef} className="topbar flex items-center justify-between px-5 sm:px-8 lg:px-10">
           <div className="brand flex items-center gap-2.5">
@@ -317,6 +347,25 @@ function App() {
               </div>
             ))}
           </nav>
+          <button
+            className="theme-toggle"
+            type="button"
+            aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
+            title={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
+            onClick={() => setThemeOverride(!isDarkMode)}
+          >
+            {isDarkMode ? (
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z" />
+                <path d="M16.5 3.5v4m-2-2h4" />
+              </svg>
+            )}
+          </button>
           <button
             className={`menu-toggle ${isMenuOpen ? 'is-open' : ''}`}
             type="button"
@@ -509,7 +558,7 @@ function App() {
             </p>
           </div>
           <div className="skills-panel">
-            <h3>Skills</h3>
+            <h3>Skills &amp; Languages</h3>
             <ul className="skills-list">
               {skills.map((skill) => {
                 const levelIndex = skillLevels.indexOf(skill.level)
@@ -542,12 +591,38 @@ function App() {
                 )
               })}
             </ul>
+            <h4 className="languages-heading">Languages</h4>
+            <ul className="skills-list language-list">
+              {languages.map((language) => (
+                <li className="skill-item" key={language.name}>
+                  <div className="skill-label">
+                    <span>{language.name}</span>
+                    <span>{language.level}</span>
+                  </div>
+                  <div
+                    className="skill-meter"
+                    role="meter"
+                    aria-label={`${language.name} proficiency`}
+                    aria-valuemin={1}
+                    aria-valuemax={languageLevels.length}
+                    aria-valuenow={language.levelIndex + 1}
+                    aria-valuetext={language.level}
+                  >
+                    {languageLevels.map((level, index) => (
+                      <span
+                        className={`skill-meter-segment${index <= language.levelIndex ? ' is-filled' : ''}`}
+                        key={level}
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </div>
+                  <div className="skill-meter-labels" aria-hidden="true">
+                    {languageLevels.map((level) => <span key={level}>{level}</span>)}
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-          <img
-            className="about-photo scroll-reveal"
-            src={fernandoAboutImage}
-            alt="Fernando Esquivel Hidalgo"
-          />
         </section>
 
         <section id="contact" className="portfolio-section contact-section scroll-reveal px-6 sm:px-10" aria-label="Contact information">
