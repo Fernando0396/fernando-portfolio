@@ -725,12 +725,65 @@
   margin-top: 0;
 }
 
-.skills-panel h3 {
+.proficiency-heading {
   margin: 0;
   color: var(--lavender);
   font-family: Oxanium, "Arial Narrow", sans-serif;
   font-size: 26px;
   font-weight: 400;
+}
+
+.proficiency-toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.proficiency-toggle:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid var(--cyan);
+  outline-offset: 5px;
+}
+
+.proficiency-chevron {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  border-right: 1px solid var(--sunset-orange);
+  border-bottom: 1px solid var(--sunset-orange);
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.proficiency-chevron.is-open {
+  transform: rotate(225deg) translate(-2px, -1px);
+}
+
+.proficiency-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 360ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 240ms ease;
+}
+
+.proficiency-content.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.proficiency-content-inner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .skills-list {
@@ -792,10 +845,7 @@
 
 .languages-heading {
   margin: 28px 0 0;
-  color: var(--lavender);
-  font-family: Oxanium, "Arial Narrow", sans-serif;
   font-size: 19px;
-  font-weight: 400;
 }
 
 .capabilities-section {
@@ -1366,14 +1416,19 @@
 
 main[data-theme="light"] {
   color-scheme: light;
-  --night: #fff8f1;
-  --deep-purple: #efe5f5;
-  --lavender: #2b1d3b;
-  --muted-lavender: #62536e;
-  --line: rgb(79 48 94 / 20%);
-  --glass-fill: rgb(255 255 255 / 60%);
-  --glass-border: rgb(91 62 108 / 20%);
-  --glass-highlight: rgb(255 255 255 / 75%);
+  --night: #fff3e8;
+  --deep-purple: #f5e2ed;
+  --purple: #70419a;
+  --pink: #e83d9a;
+  --cyan: #087f91;
+  --sunset-orange: #e76d43;
+  --sunset-gold: #bb761d;
+  --lavender: #2e1b40;
+  --muted-lavender: #59455f;
+  --line: rgb(82 48 93 / 20%);
+  --glass-fill: rgb(255 255 255 / 66%);
+  --glass-border: rgb(112 65 132 / 24%);
+  --glass-highlight: rgb(255 255 255 / 82%);
   background: var(--night);
   color: var(--lavender);
 }
@@ -1384,18 +1439,18 @@ main[data-theme="dark"] {
 
 main[data-theme="light"] .site-shell {
   background:
-    radial-gradient(ellipse at 50% 19%, rgb(183 117 221 / 15%), transparent 43%),
-    radial-gradient(ellipse at 87% 54%, rgb(64 157 173 / 10%), transparent 33%),
-    linear-gradient(160deg, #fff8f1 0%, #f9efff 52%, #fff8f1 100%);
+    radial-gradient(ellipse at 18% 9%, rgb(255 104 151 / 15%), transparent 35%),
+    radial-gradient(ellipse at 85% 44%, rgb(40 183 194 / 12%), transparent 32%),
+    linear-gradient(155deg, #fff3e8 0%, #f9eaf4 52%, #e8f5f2 100%);
 }
 
 main[data-theme="light"] .topbar {
   background:
-    linear-gradient(120deg, rgb(255 255 255 / 75%), rgb(255 238 228 / 60%) 45%, rgb(255 248 241 / 45%) 78%),
-    rgb(255 248 241 / 82%);
+    linear-gradient(120deg, rgb(255 255 255 / 84%), rgb(255 230 220 / 74%) 45%, rgb(232 245 242 / 68%) 78%),
+    rgb(255 243 232 / 88%);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 90%),
-    0 8px 28px rgb(57 33 73 / 12%);
+    inset 0 1px 0 rgb(255 255 255 / 95%),
+    0 8px 28px rgb(57 33 73 / 14%);
 }
 
 main[data-theme="light"] .contact-submenu {
@@ -1411,13 +1466,13 @@ main[data-theme="light"] .contact-submenu {
 
 main[data-theme="light"] .menu-toggle,
 main[data-theme="light"] .theme-toggle {
-  border-color: rgb(190 99 59 / 42%);
-  background: rgb(255 157 103 / 12%);
-  color: #854522;
+  border-color: rgb(179 76 48 / 44%);
+  background: linear-gradient(145deg, rgb(255 157 103 / 23%), rgb(232 61 154 / 10%));
+  color: #963f2e;
 }
 
 main[data-theme="light"] .menu-toggle span {
-  background: linear-gradient(90deg, #b95f37, #946012);
+  background: linear-gradient(90deg, #b34c30, #9b6215);
 }
 
 main[data-theme="light"] .contact-submenu-link {
@@ -1426,17 +1481,17 @@ main[data-theme="light"] .contact-submenu-link {
 
 main[data-theme="light"] .contact-submenu-link:hover,
 main[data-theme="light"] .contact-submenu-link:focus-visible {
-  background: linear-gradient(100deg, rgb(255 157 103 / 18%), rgb(255 79 216 / 8%));
-  color: #713e20;
+  background: linear-gradient(100deg, rgb(255 157 103 / 25%), rgb(232 61 154 / 12%));
+  color: #71384d;
 }
 
 main[data-theme="light"] .capabilities-section,
 main[data-theme="light"] .about-section,
 main[data-theme="light"] .contact-section {
   background:
-    radial-gradient(ellipse at 8% 0%, rgb(255 157 103 / 8%), transparent 42%),
-    linear-gradient(135deg, rgb(255 255 255 / 62%), rgb(238 220 248 / 55%)),
-    rgb(255 250 255 / 72%);
+    radial-gradient(ellipse at 8% 0%, rgb(255 109 116 / 12%), transparent 42%),
+    linear-gradient(135deg, rgb(255 255 255 / 78%), rgb(248 224 238 / 66%)),
+    rgb(255 247 239 / 82%);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 85%),
     0 20px 52px rgb(57 33 73 / 9%);
@@ -1444,10 +1499,10 @@ main[data-theme="light"] .contact-section {
 
 main[data-theme="light"] .capability-card,
 main[data-theme="light"] .contact-method {
-  border-color: rgb(91 62 108 / 20%);
+  border-color: rgb(112 65 132 / 22%);
   background:
-    linear-gradient(145deg, rgb(155 93 229 / 8%), rgb(83 160 170 / 5%)),
-    rgb(255 255 255 / 70%);
+    linear-gradient(145deg, rgb(232 61 154 / 9%), rgb(8 127 145 / 6%)),
+    rgb(255 255 255 / 78%);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 88%),
     0 14px 38px rgb(57 33 73 / 8%);
@@ -1456,16 +1511,29 @@ main[data-theme="light"] .contact-method {
 main[data-theme="light"] .about-copy {
   border-color: var(--glass-border);
   background:
-    linear-gradient(135deg, rgb(255 255 255 / 72%), rgb(238 220 248 / 55%)),
-    rgb(255 255 255 / 75%);
+    linear-gradient(135deg, rgb(255 255 255 / 82%), rgb(248 224 238 / 64%)),
+    rgb(255 247 239 / 84%);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 88%),
     0 18px 44px rgb(57 33 73 / 8%);
 }
 
 main[data-theme="light"] .skill-meter-segment {
-  border-color: rgb(91 62 108 / 25%);
-  background: rgb(232 222 239 / 90%);
+  border-color: rgb(112 65 132 / 28%);
+  background: rgb(239 224 232 / 95%);
+}
+
+main[data-theme="light"] .capability-dates,
+main[data-theme="light"] .capability-bullets li::marker {
+  color: #b34c30;
+}
+
+main[data-theme="light"] .capability-chevron {
+  border-color: #087f91;
+}
+
+main[data-theme="light"] .proficiency-chevron {
+  border-color: #b34c30;
 }
 
 main[data-theme="light"] .progress-dot:not(.is-active) {

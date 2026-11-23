@@ -92,6 +92,8 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isContactMenuOpen, setIsContactMenuOpen] = useState(false)
   const [expandedExperiences, setExpandedExperiences] = useState([true, true, true])
+  const [isSkillsExpanded, setIsSkillsExpanded] = useState(true)
+  const [areLanguagesExpanded, setAreLanguagesExpanded] = useState(true)
   const [isBrandClicked, setIsBrandClicked] = useState(false)
   const dragStart = useRef(null)
   const carouselRef = useRef(null)
@@ -558,70 +560,110 @@ function App() {
             </p>
           </div>
           <div className="skills-panel">
-            <h3>Skills &amp; Languages</h3>
-            <ul className="skills-list">
-              {skills.map((skill) => {
-                const levelIndex = skillLevels.indexOf(skill.level)
-                return (
-                  <li className="skill-item" key={skill.name}>
-                    <div className="skill-label">
-                      <span>{skill.name}</span>
-                    </div>
-                    <div
-                      className="skill-meter"
-                      role="meter"
-                      aria-label={`${skill.name} skill level`}
-                      aria-valuemin={1}
-                      aria-valuemax={skillLevels.length}
-                      aria-valuenow={levelIndex + 1}
-                      aria-valuetext={skill.level}
-                    >
-                      {skillLevels.map((level, index) => (
-                        <span
-                          className={`skill-meter-segment${index <= levelIndex ? ' is-filled' : ''}`}
-                          key={level}
-                          aria-hidden="true"
-                        />
-                      ))}
-                    </div>
-                    <div className="skill-meter-labels" aria-hidden="true">
-                      {skillLevels.map((level) => <span key={level}>{level}</span>)}
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-            <h4 className="languages-heading">Languages</h4>
-            <ul className="skills-list language-list">
-              {languages.map((language) => (
-                <li className="skill-item" key={language.name}>
-                  <div className="skill-label">
-                    <span>{language.name}</span>
-                    <span>{language.level}</span>
-                  </div>
-                  <div
-                    className="skill-meter"
-                    role="meter"
-                    aria-label={`${language.name} proficiency`}
-                    aria-valuemin={1}
-                    aria-valuemax={languageLevels.length}
-                    aria-valuenow={language.levelIndex + 1}
-                    aria-valuetext={language.level}
-                  >
-                    {languageLevels.map((level, index) => (
-                      <span
-                        className={`skill-meter-segment${index <= language.levelIndex ? ' is-filled' : ''}`}
-                        key={level}
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-                  <div className="skill-meter-labels" aria-hidden="true">
-                    {languageLevels.map((level) => <span key={level}>{level}</span>)}
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <h3 className="proficiency-heading">
+              <button
+                className="proficiency-toggle"
+                type="button"
+                aria-expanded={isSkillsExpanded}
+                aria-controls="skills-list"
+                onClick={() => setIsSkillsExpanded((expanded) => !expanded)}
+              >
+                Skills
+                <span className={`proficiency-chevron${isSkillsExpanded ? ' is-open' : ''}`} aria-hidden="true" />
+              </button>
+            </h3>
+            <div
+              className={`proficiency-content${isSkillsExpanded ? ' is-open' : ''}`}
+              id="skills-list"
+              aria-hidden={!isSkillsExpanded}
+              inert={!isSkillsExpanded}
+            >
+              <div className="proficiency-content-inner">
+                <ul className="skills-list">
+                  {skills.map((skill) => {
+                    const levelIndex = skillLevels.indexOf(skill.level)
+                    return (
+                      <li className="skill-item" key={skill.name}>
+                        <div className="skill-label">
+                          <span>{skill.name}</span>
+                        </div>
+                        <div
+                          className="skill-meter"
+                          role="meter"
+                          aria-label={`${skill.name} skill level`}
+                          aria-valuemin={1}
+                          aria-valuemax={skillLevels.length}
+                          aria-valuenow={levelIndex + 1}
+                          aria-valuetext={skill.level}
+                        >
+                          {skillLevels.map((level, index) => (
+                            <span
+                              className={`skill-meter-segment${index <= levelIndex ? ' is-filled' : ''}`}
+                              key={level}
+                              aria-hidden="true"
+                            />
+                          ))}
+                        </div>
+                        <div className="skill-meter-labels" aria-hidden="true">
+                          {skillLevels.map((level) => <span key={level}>{level}</span>)}
+                        </div>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            </div>
+            <h4 className="languages-heading proficiency-heading">
+              <button
+                className="proficiency-toggle"
+                type="button"
+                aria-expanded={areLanguagesExpanded}
+                aria-controls="languages-list"
+                onClick={() => setAreLanguagesExpanded((expanded) => !expanded)}
+              >
+                Languages
+                <span className={`proficiency-chevron${areLanguagesExpanded ? ' is-open' : ''}`} aria-hidden="true" />
+              </button>
+            </h4>
+            <div
+              className={`proficiency-content${areLanguagesExpanded ? ' is-open' : ''}`}
+              id="languages-list"
+              aria-hidden={!areLanguagesExpanded}
+              inert={!areLanguagesExpanded}
+            >
+              <div className="proficiency-content-inner">
+                <ul className="skills-list language-list">
+                  {languages.map((language) => (
+                    <li className="skill-item" key={language.name}>
+                      <div className="skill-label">
+                        <span>{language.name}</span>
+                        <span>{language.level}</span>
+                      </div>
+                      <div
+                        className="skill-meter"
+                        role="meter"
+                        aria-label={`${language.name} proficiency`}
+                        aria-valuemin={1}
+                        aria-valuemax={languageLevels.length}
+                        aria-valuenow={language.levelIndex + 1}
+                        aria-valuetext={language.level}
+                      >
+                        {languageLevels.map((level, index) => (
+                          <span
+                            className={`skill-meter-segment${index <= language.levelIndex ? ' is-filled' : ''}`}
+                            key={level}
+                            aria-hidden="true"
+                          />
+                        ))}
+                      </div>
+                      <div className="skill-meter-labels" aria-hidden="true">
+                        {languageLevels.map((level) => <span key={level}>{level}</span>)}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
