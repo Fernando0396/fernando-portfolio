@@ -1498,15 +1498,19 @@ main[data-theme="light"]::before {
 @media (min-width: 1127px) {
   main[data-theme="dark"]::before {
     background:
-      repeating-linear-gradient(90deg, transparent 0 47px, rgb(255 79 216 / 13%) 47px 48px),
-      repeating-linear-gradient(0deg, transparent 0 47px, rgb(83 224 229 / 10%) 47px 48px),
+      radial-gradient(ellipse at 8% 14%, rgb(255 79 216 / 12%), transparent 30%),
+      radial-gradient(ellipse at 92% 78%, rgb(83 224 229 / 9%), transparent 32%),
+      repeating-linear-gradient(90deg, transparent 0 47px, rgb(255 79 216 / 4%) 47px 48px),
+      repeating-linear-gradient(0deg, transparent 0 47px, rgb(83 224 229 / 3%) 47px 48px),
       linear-gradient(145deg, #080516 0%, #100a24 52%, #080516 100%);
   }
 
   main[data-theme="light"]::before {
     background:
-      repeating-linear-gradient(90deg, transparent 0 47px, rgb(195 74 140 / 18%) 47px 48px),
-      repeating-linear-gradient(0deg, transparent 0 47px, rgb(8 127 145 / 14%) 47px 48px),
+      radial-gradient(ellipse at 8% 14%, rgb(195 74 140 / 12%), transparent 30%),
+      radial-gradient(ellipse at 92% 78%, rgb(8 127 145 / 9%), transparent 32%),
+      repeating-linear-gradient(90deg, transparent 0 47px, rgb(195 74 140 / 5%) 47px 48px),
+      repeating-linear-gradient(0deg, transparent 0 47px, rgb(8 127 145 / 4%) 47px 48px),
       linear-gradient(145deg, #f3e8f0 0%, #fff3e8 52%, #e8f5f2 100%);
   }
 }
