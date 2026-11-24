@@ -368,7 +368,7 @@ function App() {
             onClick={handleResumeDownload}
           >
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M6 3h8l4 4v14H6zM14 3v5h5M9 12h6M9 16h6" />
+              <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3" />
             </svg>
             Download Resume
           </a>
