@@ -53,9 +53,9 @@ const places = [
 ]
 
 const navigationItems = [
-  { label: 'EXPERIENCE', href: '#capabilities' },
-  { label: 'WORK', href: '#work' },
   { label: 'SUMMARY', href: '#about' },
+  { label: 'WORK', href: '#work' },
+  { label: 'EXPERIENCE', href: '#capabilities' },
   { label: 'CONTACT', href: '#contact' },
 ]
 
@@ -372,7 +372,7 @@ function App() {
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3" />
             </svg>
-            PDF Resume
+            Resume PDF
           </a>
         </section>
 
@@ -678,17 +678,7 @@ function App() {
                 <path d="m4 7 8 6 8-6" />
               </svg>
               <div>
-                <h3>Email</h3>
-                <span>fernando30_96@hotmail.com</span>
-              </div>
-            </a>
-            <a className="contact-method" href="tel:+50687196676">
-              <svg className="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M7 3h3l2 5-2.2 1.6a15 15 0 0 0 4.6 4.6L16 12l5 2v3c0 1.1-.9 2-2 2C10.7 19 5 13.3 5 6c0-1.7.9-3 2-3Z" />
-              </svg>
-              <div>
-                <h3>Phone</h3>
-                <span>+506 8719-6676</span>
+                <h3>Send email</h3>
               </div>
             </a>
             <a
@@ -702,7 +692,6 @@ function App() {
               </svg>
               <div>
                 <h3>LinkedIn</h3>
-                <span>LinkedIn profile</span>
               </div>
             </a>
             <a
@@ -716,7 +705,6 @@ function App() {
               </svg>
               <div>
                 <h3>Resume PDF</h3>
-                <span>Download my resume</span>
               </div>
             </a>
           </div>
