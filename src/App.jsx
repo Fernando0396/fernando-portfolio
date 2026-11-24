@@ -356,10 +356,10 @@ function App() {
           <p className="hero-eyebrow">QUALITY ASSURANCE · LOCALIZATION QA · AI DATA QUALITY</p>
           <h1>Quality Assurance &amp; Localization QA</h1>
           <p className="hero-summary">
-            I&apos;m Fernando Esquivel, Machine Learning Associate at Amazon with 5+ years across Amazon, Lionbridge
-            and Xbox. I specialize in Manual Quality testing, Localization Quality check-ups for English to Spanish
-            translations and LLM&apos;s Query &amp; Response feedback. In a more personal ambit, I enjoy learning tech
-            such as Python, Java, JS, SQL, AI Prompts and more.
+            I&apos;m <strong>Fernando Esquivel</strong>, Machine Learning Associate at Amazon with 5+ years
+            across Amazon, Lionbridge and Xbox. I specialize in Manual Quality testing, Localization Quality
+            check-ups for English to Spanish translations and LLM&apos;s Query &amp; Response feedback. In a more
+            personal ambit, I enjoy learning tech such as Python, Java, JS, SQL, AI Prompts and more.
           </p>
           <a
             className="resume-button"
