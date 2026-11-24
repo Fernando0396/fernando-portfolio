@@ -353,7 +353,7 @@ function App() {
         </header>
 
         <section id="about" className="hero-section scroll-reveal px-6 sm:px-10" aria-label="Professional summary">
-          <p className="hero-eyebrow">QUALITY ASSURANCE · LOCALIZATION QA · AI DATA QUALITY</p>
+          <p className="hero-eyebrow">Open to Quality Assurance, Localization, Annotation roles</p>
           <h1>Quality Assurance &amp; Localization QA</h1>
           <p className="hero-summary">
             I&apos;m <strong>Fernando Esquivel</strong>, Machine Learning Associate at Amazon with 5+ years
