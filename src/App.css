@@ -237,7 +237,7 @@
   transition:
     border-color 180ms ease,
     background 180ms ease,
-    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .theme-toggle {
@@ -332,9 +332,9 @@
   background: linear-gradient(90deg, var(--sunset-orange), var(--sunset-gold));
   box-shadow: 0 0 5px rgb(255 157 103 / 30%);
   transition:
-    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity 160ms ease,
-    width 180ms ease;
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    width 240ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-toggle.is-open {
@@ -673,7 +673,7 @@
   color: inherit;
   cursor: pointer;
   text-align: left;
-  transition: background-color 180ms ease;
+  transition: background-color 240ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .proficiency-toggle:hover,
@@ -694,7 +694,7 @@
   border-right: 1px solid var(--sunset-orange);
   border-bottom: 1px solid var(--sunset-orange);
   transform: rotate(45deg) translateY(-2px);
-  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .proficiency-chevron.is-open {
@@ -706,8 +706,8 @@
   grid-template-rows: 0fr;
   opacity: 0;
   transition:
-    grid-template-rows 360ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity 240ms ease;
+    grid-template-rows 480ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 360ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .proficiency-content.is-open {
@@ -770,7 +770,7 @@
 }
 
 .proficiency-content.is-open .skill-meter-segment.is-filled {
-  animation: skill-meter-fill 480ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: skill-meter-fill 600ms cubic-bezier(0.4, 0, 0.2, 1) both;
   animation-delay: calc(var(--meter-item-delay, 0ms) + var(--meter-segment-delay, 0ms));
   transform-origin: left center;
 }
@@ -863,7 +863,7 @@
   color: inherit;
   cursor: pointer;
   text-align: left;
-  transition: background-color 180ms ease;
+  transition: background-color 240ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .capability-toggle:hover,
@@ -877,7 +877,7 @@
   border-right: 1px solid var(--cyan);
   border-bottom: 1px solid var(--cyan);
   transform: rotate(45deg) translateY(-2px);
-  transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .capability-chevron.is-open {
@@ -894,8 +894,8 @@
   grid-template-rows: 0fr;
   opacity: 0;
   transition:
-    grid-template-rows 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity 300ms ease;
+    grid-template-rows 480ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 360ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .capability-content.is-open {
@@ -907,7 +907,7 @@
   min-height: 0;
   overflow: hidden;
   padding-top: 0;
-  transition: padding-top 320ms ease;
+  transition: padding-top 440ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .capability-content.is-open .capability-content-inner {
@@ -1302,9 +1302,9 @@
     transform-origin: top center;
     visibility: hidden;
     transition:
-      opacity 220ms ease,
-      transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
-      visibility 220ms;
+      opacity 280ms cubic-bezier(0.4, 0, 0.2, 1),
+      transform 360ms cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 280ms;
   }
 
   .header-nav.is-open {
@@ -1324,8 +1324,8 @@
     opacity: 0;
     transform: translateY(-5px);
     transition:
-      opacity 160ms ease,
-      transform 200ms ease;
+      opacity 240ms cubic-bezier(0.4, 0, 0.2, 1),
+      transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .header-nav.is-open .nav-link {
