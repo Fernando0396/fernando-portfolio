@@ -661,15 +661,24 @@
 .proficiency-toggle {
   display: flex;
   width: 100%;
+  min-height: 48px;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 0;
+  margin: -8px;
+  padding: 8px;
   border: 0;
+  border-radius: 8px;
   background: transparent;
   color: inherit;
   cursor: pointer;
   text-align: left;
+  transition: background-color 180ms ease;
+}
+
+.proficiency-toggle:hover,
+.proficiency-toggle:focus-visible {
+  background: rgb(255 255 255 / 5%);
 }
 
 .proficiency-toggle:focus-visible {
